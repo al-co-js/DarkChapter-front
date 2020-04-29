@@ -2,24 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Navigation = (props) => {
-  const style = {
-    container: {
-      position: 'relative',
-      float: 'right',
-      listStyle: 'none',
-      right: '30px',
-      top: '30px',
-    },
-    list: {
-      display: 'inline-block',
-      marginRight: '35px',
-    },
-    link: {
-      textDecoration: 'none',
-      color: '#D6D6D6',
-    },
-  };
-
   const { page } = props;
 
   return (
