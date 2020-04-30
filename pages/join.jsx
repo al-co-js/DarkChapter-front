@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Router } from 'next/router';
+import Cookies from 'js-cookie';
 
 import Button from '../components/Button';
 import Navigation from '../components/Navigation';
@@ -22,6 +23,10 @@ const join = () => {
       link: 'about',
     },
   ];
+
+  useEffect(() => {
+    Cookies.remove('token');
+  });
 
   const Join = async () => {
     const name = document.getElementById('name').value;
