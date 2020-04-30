@@ -23,6 +23,7 @@ const Profile = (props) => {
             text-align: center;
             transform: scale(${scale});
             box-shadow: 3px 3px 6px #00000070, -2px -2px 3px #60606070;
+            cursor: pointer;
           }
 
           .image {
@@ -30,16 +31,28 @@ const Profile = (props) => {
             width: 195px;
             height: 195px;
             margin-top: 35px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
           }
 
           .target {
             font-size: 35px;
             margin-top: 15px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
           }
 
           .uploader {
             font-size: 15px;
-            margin-top: 15px;
+            margin-top: 10px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
           }
         `}
         </style>

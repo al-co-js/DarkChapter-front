@@ -42,6 +42,10 @@ const Navigation = (props) => {
           .link {
             text-decoration: none;
             color: #d6d6d6;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
           }
         `}
       </style>
