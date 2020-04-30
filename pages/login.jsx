@@ -9,23 +9,29 @@ import TextBox from '../components/TextBox';
 import Tile from '../components/Tile';
 
 const login = () => {
-  const page = [
-    {
-      name: 'Main',
-      link: '',
-    },
-    {
-      name: 'Join',
-      link: 'join',
-    },
-    {
-      name: 'About',
-      link: 'about',
-    },
-  ];
-
   useEffect(() => {
     Cookies.remove('token');
+
+    const page = [
+      {
+        name: 'Main',
+        link: '',
+      },
+      {
+        name: 'Join',
+        link: 'join',
+      },
+      {
+        name: 'About',
+        link: 'about',
+      },
+    ];
+
+    const links = document.getElementsByClassName('link');
+    for (let i = 0; i < 3; i += 1) {
+      links[i].href = `/${page[i].link}`;
+      links[i].textContent = page[i].name;
+    }
   });
 
   const Login = async () => {
@@ -51,7 +57,7 @@ const login = () => {
 
   return (
     <>
-      <Navigation page={page} />
+      <Navigation />
       <Tile className="loginTile">
         <TextBox className="textBox" id="id" placeholder="ID" />
         <TextBox

@@ -9,20 +9,28 @@ import TextBox from '../components/TextBox';
 import Tile from '../components/Tile';
 
 const join = () => {
-  const page = [
-    {
-      name: 'Login',
-      link: 'login',
-    },
-    {
-      name: 'Main',
-      link: '',
-    },
-    {
-      name: 'About',
-      link: 'about',
-    },
-  ];
+  useEffect(() => {
+    const page = [
+      {
+        name: 'Login',
+        link: 'login',
+      },
+      {
+        name: 'Main',
+        link: '',
+      },
+      {
+        name: 'About',
+        link: 'about',
+      },
+    ];
+
+    const links = document.getElementsByClassName('link');
+    for (let i = 0; i < 3; i += 1) {
+      links[i].href = `/${page[i].link}`;
+      links[i].textContent = page[i].name;
+    }
+  });
 
   useEffect(() => {
     Cookies.remove('token');
@@ -54,7 +62,7 @@ const join = () => {
 
   return (
     <>
-      <Navigation page={page} />
+      <Navigation />
       <Tile className="joinTile">
         <TextBox className="textBox" id="name" placeholder="Name" />
         <TextBox className="textBox" id="schoolId" placeholder="School ID Ex) 2301" />

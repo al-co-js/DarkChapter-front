@@ -1,42 +1,58 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 import Navigation from '../components/Navigation';
+import ProfileRank from '../components/ProfileRank';
 
 const main = () => {
-  const page = Cookies.get('token')
-    ? [
-      {
-        name: 'Logout',
-        link: 'logout',
-      },
-      {
-        name: 'Profiles',
-        link: 'profiles',
-      },
-      {
-        name: 'About',
-        link: 'about',
-      },
-    ]
-    : [
-      {
-        name: 'Login',
-        link: 'login',
-      },
-      {
-        name: 'Join',
-        link: 'join',
-      },
-      {
-        name: 'About',
-        link: 'about',
-      },
-    ];
+  useEffect(() => {
+    const isLogged = Cookies.get('token');
+    const page = isLogged
+      ? [
+        {
+          name: 'Logout',
+          link: 'logout',
+        },
+        {
+          name: 'Profiles',
+          link: 'profiles',
+        },
+        {
+          name: 'About',
+          link: 'about',
+        },
+      ]
+      : [
+        {
+          name: 'Login',
+          link: 'login',
+        },
+        {
+          name: 'Join',
+          link: 'join',
+        },
+        {
+          name: 'About',
+          link: 'about',
+        },
+      ];
+    const links = document.getElementsByClassName('link');
+    for (let i = 0; i < 3; i += 1) {
+      links[i].href = `/${page[i].link}`;
+      links[i].textContent = page[i].name;
+    }
+    const moreLink = document.getElementById('moreLink');
+    moreLink.href = isLogged ? '/profiles' : '/login';
+    const more = moreLink.children[0];
+    more.src = isLogged ? '/plus.svg' : '/dotdotdot.svg';
+    more.alt = isLogged ? 'plus' : 'dotdotdot';
+    more.id = isLogged ? 'plus' : 'dotdotdot';
+  });
 
   return (
     <>
-      <Navigation page={page} />
+      <Navigation />
+      <ProfileRank />
     </>
   );
 };

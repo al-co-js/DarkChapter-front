@@ -1,37 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Navigation = (props) => {
-  const { page } = props;
+const Navigation = () => (
+  <>
+    <ui className="container">
+      <li className="list">
+        <a className="link" href="/"> </a>
+      </li>
+      <li className="list">
+        <a className="link" href="/"> </a>
+      </li>
+      <li className="list">
+        <a className="link" href="/"> </a>
+      </li>
+    </ui>
 
-  return (
-    <>
-      <ui className="container">
-        <li className="list">
-          <a className="link" href={`/${page[0].link}`}>
-            {page[0].name}
-          </a>
-        </li>
-        <li className="list">
-          <a className="link" href={`/${page[1].link}`}>
-            {page[1].name}
-          </a>
-        </li>
-        <li className="list">
-          <a className="link" href={`/${page[2].link}`}>
-            {page[2].name}
-          </a>
-        </li>
-      </ui>
-
-      <style jsx>
-        {`
+    <style jsx>
+      {`
           .container {
             position: relative;
             float: right;
             list-style: none;
             right: 30px;
             top: 30px;
+            z-index: 9999;
           }
 
           .list {
@@ -48,13 +39,8 @@ const Navigation = (props) => {
             user-select: none;
           }
         `}
-      </style>
-    </>
-  );
-};
-
-Navigation.propTypes = {
-  page: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+    </style>
+  </>
+);
 
 export default Navigation;
