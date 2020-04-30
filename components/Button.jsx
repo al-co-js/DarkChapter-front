@@ -8,7 +8,7 @@ const Tile = (props) => {
 
   return (
     <>
-      <button className={className} id={id} type="button" onClick={setTimeout(onClick, 150)}>
+      <button className={className} id={id} type="button" onClick={() => { setTimeout(onClick, 150); }}>
         {children}
       </button>
 
