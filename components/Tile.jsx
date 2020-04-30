@@ -17,6 +17,8 @@ const Tile = (props) => {
           div {
             border-radius: 34px;
             box-shadow: -2px -2px 3px #60606070, 3px 3px 6px #00000070;
+            margin-top: 50px;
+            margin-bottom: 50px;
           }
         `}
       </style>
@@ -33,7 +35,12 @@ Tile.defaultProps = {
 Tile.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.node,
+  ]),
 };
 
 export default Tile;
