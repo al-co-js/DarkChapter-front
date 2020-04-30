@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import Router from 'next/router';
 
 import Button from '../components/Button';
 import Navigation from '../components/Navigation';
@@ -21,13 +24,48 @@ const login = () => {
     },
   ];
 
+  useEffect(() => {
+    Cookies.remove('token');
+  });
+
+  const Login = async () => {
+    const id = document.getElementById('id').value;
+    const password = document.getElementById('password').value;
+    if (!(id && password)) {
+      alert('입력칸을 모두 채워주세요.');
+      return;
+    }
+    try {
+      const token = await axios.post('http://localhost:4000/auth/login', { id, password });
+      if (!token) {
+        alert('알 수 없는 에러가 발생했습니다.');
+        return;
+      }
+
+      Cookies.set('token', token.data, { maxAge: '25200' });
+      Router.push('/');
+    } catch (err) {
+      alert(err);
+    }
+  };
+
   return (
     <>
       <Navigation page={page} />
       <Tile className="loginTile">
         <TextBox className="textBox" id="id" placeholder="ID" />
-        <TextBox className="textBox" id="password" placeholder="Password" type="password" />
-        <Button id="login">Login</Button>
+        <TextBox
+          className="textBox"
+          id="password"
+          placeholder="Password"
+          type="password"
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              Login();
+            }
+          }}
+        />
+        <Button id="login" onClick={Login}>Login</Button>
       </Tile>
 
       <style jsx global>
@@ -35,10 +73,11 @@ const login = () => {
           .loginTile {
             position: absolute;
             left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 610px;
+            top: 13%;
+            transform: translate(-50%);
+            width: 90%;
             height: 590px;
+            max-width: 610px;
           }
 
           .textBox {
