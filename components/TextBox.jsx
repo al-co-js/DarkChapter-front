@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 
 const TextBox = (props) => {
   const {
-    type, placeholder, className, id,
+    type, placeholder, className, id, onKeyPress,
   } = props;
 
   return (
     <>
-      <input className={className} id={id} type={type} placeholder={placeholder} />
+      <input
+        className={className}
+        id={id}
+        type={type}
+        placeholder={placeholder}
+        onKeyPress={onKeyPress}
+      />
 
       <style jsx>
         {`
@@ -36,6 +42,7 @@ TextBox.defaultProps = {
   placeholder: '',
   className: '',
   id: '',
+  onKeyPress: () => {},
 };
 
 TextBox.propTypes = {
@@ -43,6 +50,7 @@ TextBox.propTypes = {
   placeholder: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string,
+  onKeyPress: PropTypes.func,
 };
 
 export default TextBox;
