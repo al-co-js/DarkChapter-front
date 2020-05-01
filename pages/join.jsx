@@ -4,6 +4,7 @@ import { Router } from 'next/router';
 import Cookies from 'js-cookie';
 
 import Button from '../components/Button';
+import { showModal } from '../components/Modal';
 import Navigation from '../components/Navigation';
 import TextBox from '../components/TextBox';
 import Tile from '../components/Tile';
@@ -43,11 +44,11 @@ const join = () => {
     const password = document.getElementById('password').value;
     const verify = document.getElementById('verify').value;
     if (!(name && schoolId && id && password && verify)) {
-      alert('입력칸을 모두 채워주세요.');
+      showModal('오류', '입력칸을 모두 채워주세요.');
       return;
     }
     if (password !== verify) {
-      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+      showModal('오류', '비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
       return;
     }
     try {
@@ -56,7 +57,7 @@ const join = () => {
       });
       Router.push('/login');
     } catch (err) {
-      alert(err);
+      showModal('오류', err);
     }
   };
 

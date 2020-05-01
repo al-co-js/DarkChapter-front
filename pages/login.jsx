@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import Router from 'next/router';
 
 import Button from '../components/Button';
+import { showModal } from '../components/Modal';
 import Navigation from '../components/Navigation';
 import TextBox from '../components/TextBox';
 import Tile from '../components/Tile';
@@ -38,20 +39,20 @@ const login = () => {
     const id = document.getElementById('id').value;
     const password = document.getElementById('password').value;
     if (!(id && password)) {
-      alert('입력칸을 모두 채워주세요.');
+      showModal('오류', '입력칸을 모두 채워주세요.');
       return;
     }
     try {
       const token = await axios.post('http://localhost:4000/auth/login', { id, password });
       if (!token) {
-        alert('알 수 없는 에러가 발생했습니다.');
+        showModal('오류', '알 수 없는 에러가 발생했습니다.');
         return;
       }
 
       Cookies.set('token', token.data, { maxAge: '25200' });
       Router.push('/');
     } catch (err) {
-      alert(err);
+      showModal('오류', err);
     }
   };
 

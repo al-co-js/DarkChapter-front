@@ -1,42 +1,128 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
-const Tile = (props) => {
-  const {
-    className, id, title, content,
-  } = props;
+import Button from './Button';
+
+// eslint-disable-next-line import/no-mutable-exports
+let showModal;
+
+const Modal = () => {
+  const [title, setTitle] = useState('title');
+  const [content, setContent] = useState('content');
+  const [status, setStatus] = useState('none');
+
+  showModal = (_title, _content) => {
+    setTitle(_title);
+    setContent(_content);
+    setStatus('block');
+  };
 
   return (
     <>
-      <div className={className} id={id}>
-        <div className="title">
+      <div className="back" />
+      <div className="modal">
+        <div className="modalTitle">
           {title}
         </div>
-        <div className="content">
+        <div className="modalContent">
           {content}
         </div>
+        <Button className="modalClose" onClick={() => { setStatus('none'); }}>닫기</Button>
       </div>
+
       <style jsx>
         {`
-          
+          .back {
+            position: absolute;
+            display: ${status};
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background-color: #000000;
+            z-index: 99998;
+            margin: 0;
+            padding: 0;
+            animation: backgroundAnimation 0.3s ease-in-out both;
+          }
+
+          @keyframes backgroundAnimation {
+            0% {
+              opacity: 0%;
+            }
+            100% {
+              opacity: 40%;
+            }
+          }
+
+          .modal {
+            position: absolute;
+            display: ${status};
+            left: 50%;
+            top: 0%;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            z-index: 99999;
+            background-color: #2b2b2b;
+            border-radius: 36px;
+            box-shadow: 3px 3px 8px #000000aa, -2px -2px 8px #808080aa;
+            min-width: 350px;
+            min-height: 200px;
+            max-width: 650px;
+            max-height: 480px;
+            animation: modalAnimation 0.1s both;
+            animation-delay: 0.2s;
+          }
+
+          @keyframes modalAnimation {
+            0% {
+              opacity: 0%;
+              top: 30%;
+            }
+            100% {
+              opacity: 100%;
+              top: 50%;
+            }
+          }
+
+          .modalTitle {
+            position: relative;
+            left: 20px;
+            top: 15px;
+            font-size: 35px;
+          }
+
+          .modalContent {
+            position: relative;
+            left: 20px;
+            top: 35px;
+            font-size: 22px;
+            width: 94%;
+            word-break: break-all;
+          }
+      `}
+      </style>
+
+      <style jsx global>
+        {`
+          body {
+            margin: 0;
+            padding: 0;
+          }
+
+          .modalClose {
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            width: 70px !important;
+            height: 35px !important;
+            font-size: 20px !important;
+            position: absolute;
+          }
         `}
       </style>
     </>
   );
 };
 
-Tile.defaultProps = {
-  className: '',
-  id: '',
-  title: '',
-  content: '',
+export {
+  Modal, showModal,
 };
-
-Tile.propTypes = {
-  className: PropTypes.string,
-  id: PropTypes.string,
-  title: PropTypes.string,
-  content: PropTypes.string,
-};
-
-export default Tile;
