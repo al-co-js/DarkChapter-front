@@ -39,20 +39,42 @@ const login = () => {
     const id = document.getElementById('id').value;
     const password = document.getElementById('password').value;
     if (!(id && password)) {
-      showModal('오류', '입력칸을 모두 채워주세요.');
+      showModal('오류', '입력칸을 모두 채워주세요');
       return;
     }
     try {
       const token = await axios.post('http://localhost:4000/auth/login', { id, password });
       if (!token) {
-        showModal('오류', '알 수 없는 에러가 발생했습니다.');
+        showModal('오류', '알 수 없는 에러가 발생했습니다');
         return;
       }
 
       Cookies.set('token', token.data, { maxAge: '25200' });
       Router.push('/');
     } catch (err) {
-      showModal('오류', err);
+      if (err.message === 'Network Error') {
+        showModal('오류', '서버와 연결에 실패했습니다');
+        return;
+      }
+      let msg;
+      switch (err.response.status) {
+        case 404:
+          msg = '아이디가 존재하지 않습니다';
+          break;
+        case 401:
+          msg = '비밀번호가 틀렸습니다';
+          break;
+        case 412:
+          msg = '서버에 데이터가 제대로 전달되지 못했습니다';
+          break;
+        case 500:
+          msg = '서버에서 에러가 발생했습니다';
+          break;
+        default:
+          msg = '알 수 없는 에러가 발생했습니다';
+          break;
+      }
+      showModal('오류', msg);
     }
   };
 

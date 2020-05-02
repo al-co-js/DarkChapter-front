@@ -44,11 +44,11 @@ const join = () => {
     const password = document.getElementById('password').value;
     const verify = document.getElementById('verify').value;
     if (!(name && schoolId && id && password && verify)) {
-      showModal('오류', '입력칸을 모두 채워주세요.');
+      showModal('오류', '입력칸을 모두 채워주세요');
       return;
     }
     if (password !== verify) {
-      showModal('오류', '비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+      showModal('오류', '비밀번호가 일치하지 않습니다');
       return;
     }
     try {
@@ -57,7 +57,25 @@ const join = () => {
       });
       Router.push('/login');
     } catch (err) {
-      showModal('오류', err);
+      if (!err.resonse.status) {
+        err.resonse.status = 600;
+      }
+      let msg;
+      switch (err.response.status) {
+        case 409:
+          msg = '이미 존재하는 아이디입니다';
+          break;
+        case 412:
+          msg = '서버에 데이터가 제대로 전달되지 못했습니다';
+          break;
+        case 500:
+          msg = '서버에서 에러가 발생했습니다';
+          break;
+        default:
+          msg = '알 수 없는 에러가 발생했습니다';
+          break;
+      }
+      showModal('오류', msg);
     }
   };
 
