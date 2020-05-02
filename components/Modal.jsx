@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import Button from './Button';
-
 // eslint-disable-next-line import/no-mutable-exports
 let showModal;
 
@@ -26,7 +24,15 @@ const Modal = () => {
         <div className="modalContent">
           {content}
         </div>
-        <Button className="modalClose" onClick={() => { setStatus('none'); }}>닫기</Button>
+        <img
+          aria-hidden
+          src="close.svg"
+          alt="close"
+          className="modalClose"
+          onKeyPress={() => { setStatus('none'); }}
+          onClick={() => { setStatus('none'); }}
+        />
+        {/* <Button className="modalClose" onClick={() => { setStatus('none'); }}>닫기</Button> */}
       </div>
 
       <style jsx>
@@ -67,9 +73,10 @@ const Modal = () => {
             min-width: 350px;
             min-height: 200px;
             max-width: 650px;
-            max-height: 480px;
+            max-height: 580px;
             animation: modalAnimation 0.1s both;
             animation-delay: 0.2s;
+            text-align: justify;
           }
 
           @keyframes modalAnimation {
@@ -85,8 +92,8 @@ const Modal = () => {
 
           .modalTitle {
             position: relative;
-            left: 20px;
-            top: 15px;
+            left: 25px;
+            top: 20px;
             font-size: 35px;
           }
 
@@ -97,27 +104,23 @@ const Modal = () => {
             font-size: 22px;
             width: 94%;
             word-break: break-all;
-          }
-      `}
-      </style>
-
-      <style jsx global>
-        {`
-          body {
-            margin: 0;
-            padding: 0;
+            margin-bottom: 65px;
+            max-width: 640px;
+            max-height: 410px;
+            overflow-y: auto;
           }
 
           .modalClose {
             position: absolute;
-            right: 30px;
-            bottom: 30px;
+            top: 20px;
+            right: 0;
             width: 70px !important;
             height: 35px !important;
-            font-size: 20px !important;
             position: absolute;
+            transform: scale(1.2);
+            cursor: pointer;
           }
-        `}
+      `}
       </style>
     </>
   );
