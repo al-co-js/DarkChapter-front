@@ -9,7 +9,7 @@ import Navigation from '../../components/Navigation';
 
 const registry = () => {
   const token = Cookies.get('token');
-  const [image, setImage] = useState('data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=');
+  const [image, setImage] = useState('/imageSelect.svg');
 
   useEffect(() => {
     const delegate = async () => {
@@ -59,11 +59,11 @@ const registry = () => {
 
   const Registry = async () => {
     const name = document.getElementById('name').textContent;
-    if (image === 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=') {
+    if (image === '/imageSelect.svg') {
       showModal('오류', '프로필 이미지가 선택되지 않았습니다');
       return;
     }
-    if (!name || name === '이름 수정') {
+    if (!name || name === '이름 입력') {
       showModal('오류', '이름을 입력해주세요');
       return;
     }
@@ -137,7 +137,7 @@ const registry = () => {
             onChange={ImageSelect}
           />
         </label>
-        <div contentEditable className="target" id="name">이름 수정</div>
+        <div contentEditable className="target" id="name">이름 입력</div>
         <div className="uploader" id="uploader" />
         <Button className="upload" onClick={Registry}>Upload</Button>
       </div>
