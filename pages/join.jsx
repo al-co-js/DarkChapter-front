@@ -57,8 +57,9 @@ const join = () => {
       });
       Router.push('/login');
     } catch (err) {
-      if (!err.resonse.status) {
-        err.resonse.status = 600;
+      if (err.message === 'Network Error') {
+        showModal('오류', '서버와 연결에 실패했습니다');
+        return;
       }
       let msg;
       switch (err.response.status) {
