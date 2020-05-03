@@ -30,7 +30,7 @@ const Modal = () => {
         </div>
         <img
           aria-hidden
-          src="close.svg"
+          src="/close.svg"
           alt="close"
           className="modalClose"
           onKeyPress={() => {

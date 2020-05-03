@@ -66,7 +66,7 @@ const ProfileList = () => {
           <a id="registryLink" href="/profiles/registry">
             <img
               className="registry"
-              src="plus.svg"
+              src="/plus.svg"
               alt="registry"
             />
           </a>
