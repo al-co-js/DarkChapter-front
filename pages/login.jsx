@@ -58,11 +58,11 @@ const login = () => {
       }
       let msg;
       switch (err.response.status) {
-        case 404:
-          msg = '아이디가 존재하지 않습니다';
-          break;
         case 401:
           msg = '비밀번호가 틀렸습니다';
+          break;
+        case 404:
+          msg = '아이디가 존재하지 않습니다';
           break;
         case 412:
           msg = '서버에 데이터가 제대로 전달되지 못했습니다';
