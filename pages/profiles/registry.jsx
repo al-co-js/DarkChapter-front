@@ -58,7 +58,7 @@ const registry = () => {
   });
 
   const Registry = async () => {
-    const name = document.getElementById('name').value;
+    const name = document.getElementById('name').textContent;
     if (image === 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=') {
       showModal('오류', '프로필 이미지가 선택되지 않았습니다');
       return;
@@ -73,7 +73,7 @@ const registry = () => {
     }
 
     try {
-      await axios.post('http://localhost:4000/', { token, target: name, image });
+      await axios.post('http://localhost:4000/profile/registry', { token, target: name, image });
       showModal('성공', '성공적으로 프로필을 생성했습니다', () => {
         Router.push('/profiles');
       });
@@ -89,6 +89,9 @@ const registry = () => {
           break;
         case 412:
           msg = '서버에 데이터가 제대로 전달되지 못했습니다';
+          break;
+        case 413:
+          msg = '이미지의 용량이 너무 큽니다';
           break;
         case 500:
           msg = '서버에서 에러가 발생했습니다';
