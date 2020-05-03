@@ -7,11 +7,15 @@ const Modal = () => {
   const [title, setTitle] = useState('title');
   const [content, setContent] = useState('content');
   const [status, setStatus] = useState('none');
+  const [callback, setCallback] = useState({ method: () => {} });
 
-  showModal = (_title, _content) => {
+  showModal = (_title, _content, _callback) => {
     setTitle(_title);
     setContent(_content);
     setStatus('block');
+    if (_callback) {
+      setCallback({ method: _callback });
+    }
   };
 
   return (
@@ -29,10 +33,15 @@ const Modal = () => {
           src="close.svg"
           alt="close"
           className="modalClose"
-          onKeyPress={() => { setStatus('none'); }}
-          onClick={() => { setStatus('none'); }}
+          onKeyPress={() => {
+            setStatus('none');
+            callback.method();
+          }}
+          onClick={() => {
+            setStatus('none');
+            callback.method();
+          }}
         />
-        {/* <Button className="modalClose" onClick={() => { setStatus('none'); }}>닫기</Button> */}
       </div>
 
       <style jsx>
@@ -71,7 +80,7 @@ const Modal = () => {
             border-radius: 36px;
             box-shadow: 3px 3px 8px #000000aa, -2px -2px 8px #808080aa;
             min-width: 350px;
-            min-height: 200px;
+            min-height: 160px;
             max-width: 650px;
             max-height: 580px;
             animation: modalAnimation 0.1s both;
