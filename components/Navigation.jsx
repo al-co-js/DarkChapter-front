@@ -33,6 +33,7 @@ const Navigation = () => (
           .link {
             text-decoration: none;
             color: #d6d6d6;
+            font-size: 23px;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
