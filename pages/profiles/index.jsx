@@ -24,7 +24,6 @@ const profiles = () => {
             Router.push('/login');
           });
         }
-        document.getElementById('uploader').textContent = `작성자 : ${verified.data.schoolId} ${verified.data.name}`;
       } catch (err) {
         showModal('오류', '로그인이 필요한 작업입니다', () => {
           Router.push('/login');
