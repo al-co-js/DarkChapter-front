@@ -14,7 +14,7 @@ const ProfileList = () => {
       return;
     }
 
-    profiles.data.forEach((profile) => {
+    profiles.data.some((profile) => {
       const item = (
         <Profile target={profile.target} uploader={profile.uploader} image={profile.image} />
       );
@@ -27,9 +27,14 @@ const ProfileList = () => {
       cont.style.marginRight = '50px';
       cont.style.marginTop = '40px';
       cont.style.marginBottom = '30px';
-      document.getElementById('profileList').appendChild(cont);
-      const conts = document.getElementsByClassName('profileItems');
-      render(item, conts[conts.length - 1]);
+      try {
+        document.getElementById('profileList').appendChild(cont);
+        const conts = document.getElementsByClassName('profileItems');
+        render(item, conts[conts.length - 1]);
+        return false;
+      } catch (err) {
+        return true;
+      }
     });
   };
 
@@ -56,7 +61,17 @@ const ProfileList = () => {
 
   return (
     <>
-      <ul id="profileList" />
+      <ul id="profileList">
+        <li>
+          <a id="registryLink" href="/profiles/registry">
+            <img
+              className="registry"
+              src="plus.svg"
+              alt="registry"
+            />
+          </a>
+        </li>
+      </ul>
 
       <style jsx>
         {`
@@ -67,6 +82,15 @@ const ProfileList = () => {
             top: 130px;
             left: 50%;
             transform: translate(-50%);
+          }
+
+          .registry {
+            display: inline-block;
+            width: 247px;
+            float: left;
+            margin-left: 50px;
+            margin-right: 50px;
+            margin-top: 80px;
           }
         `}
       </style>
