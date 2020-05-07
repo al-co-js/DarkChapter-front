@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { useEffect } from 'react';
 import { render } from 'react-dom';
-import axios from 'axios';
 
 import Profile from './Profile';
 

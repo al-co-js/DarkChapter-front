@@ -1,6 +1,6 @@
+import axios from 'axios';
 import React, { useEffect } from 'react';
 import { render } from 'react-dom';
-import axios from 'axios';
 
 import Profile from './Profile';
 
@@ -15,7 +15,12 @@ const ProfileRank = () => {
 
     profiles.data.forEach((profile, i) => {
       const item = (
-        <Profile target={profile.target} uploader={profile.uploader} image={profile.image} />
+        <Profile
+          target={profile.target}
+          uploader={profile.uploader}
+          image={profile.image}
+          _id={profile._id}
+        />
       );
       const cont = document.createElement('li');
       cont.className = 'profileItems';

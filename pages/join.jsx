@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
 import axios from 'axios';
-import { Router } from 'next/router';
 import Cookies from 'js-cookie';
+import { Router } from 'next/router';
+import React, { useEffect } from 'react';
 
 import Button from '../components/Button';
 import { showModal } from '../components/Modal';

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// eslint-disable-next-line import/no-mutable-exports
 let showModal;
 
 const Modal = () => {
