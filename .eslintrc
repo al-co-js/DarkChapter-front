@@ -15,5 +15,10 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react"]
+  "plugins": ["react", "import", "simple-import-sort"],
+  "rules": {
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "simple-import-sort/sort": "error",
+    "import/no-mutable-exports": "off"
+  }
 }
