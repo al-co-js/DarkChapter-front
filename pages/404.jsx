@@ -5,8 +5,8 @@ const about = () => (
     <div className="errorMessage">
       404
     </div>
-    <a className="gotoHome" href="/">
-      Home
+    <a className="gotoMain" href="/">
+      Main
     </a>
 
     <style jsx>
@@ -26,7 +26,7 @@ const about = () => (
           user-select: none;
         }
 
-        .gotoHome {
+        .gotoMain {
           position: absolute;
           font-size: 60px;
           left: 50%;
