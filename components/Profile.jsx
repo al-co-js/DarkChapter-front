@@ -1,14 +1,25 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+
+import { showDetail } from './DetailList';
 
 const Profile = (props) => {
   const {
-    target, uploader, image, scale,
+    target, uploader, image, _id, scale,
   } = props;
+
+  const OpenDetail = () => {
+    showDetail(_id);
+  };
 
   return (
     <>
-      <div className="container">
+      <div
+        aria-hidden
+        className="container"
+        onKeyPress={OpenDetail}
+        onClick={OpenDetail}
+      >
         <img className="image" src={image} alt="profileImage" />
         <div className="target">{target}</div>
         <div className="uploader">{`작성자 : ${uploader}`}</div>
@@ -69,6 +80,7 @@ Profile.propTypes = {
   target: PropTypes.string.isRequired,
   uploader: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
   scale: PropTypes.number,
 };
 

@@ -16,7 +16,12 @@ const ProfileList = () => {
 
     profiles.data.some((profile) => {
       const item = (
-        <Profile target={profile.target} uploader={profile.uploader} image={profile.image} />
+        <Profile
+          target={profile.target}
+          uploader={profile.uploader}
+          image={profile.image}
+          _id={profile._id}
+        />
       );
       const cont = document.createElement('li');
       cont.className = 'profileItems';
