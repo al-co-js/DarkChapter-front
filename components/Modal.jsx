@@ -124,7 +124,6 @@ const Modal = () => {
             right: 0;
             width: 70px !important;
             height: 35px !important;
-            position: absolute;
             transform: scale(1.2);
             cursor: pointer;
           }

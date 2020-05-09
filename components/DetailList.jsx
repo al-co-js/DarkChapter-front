@@ -110,6 +110,8 @@ const DetailList = () => {
             animation: modalAnimation 0.1s both;
             animation-delay: 0.2s;
             text-align: justify;
+            overflow-x: hidden;
+            overflow-y: auto;
           }
 
           @keyframes modalAnimation {
@@ -123,33 +125,12 @@ const DetailList = () => {
             }
           }
 
-          .modalTitle {
-            position: relative;
-            left: 25px;
-            top: 20px;
-            font-size: 35px;
-          }
-
-          .modalContent {
-            position: relative;
-            left: 20px;
-            top: 35px;
-            font-size: 22px;
-            width: 94%;
-            word-break: break-all;
-            margin-bottom: 65px;
-            max-width: 640px;
-            max-height: 410px;
-            overflow-y: auto;
-          }
-
           .modalClose {
-            position: absolute;
-            top: 20px;
-            right: 0;
+            position: sticky;
+            left: 10px;
+            top: 30px;
             width: 70px !important;
             height: 35px !important;
-            position: absolute;
             transform: scale(1.2);
             cursor: pointer;
           }
