@@ -1,10 +1,8 @@
 import React from 'react';
 
-const about = () => (
+const notFound = () => (
   <>
-    <div className="errorMessage">
-      404
-    </div>
+    <div className="errorMessage">404</div>
     <a className="gotoMain" href="/">
       Main
     </a>
@@ -54,4 +52,4 @@ const about = () => (
   </>
 );
 
-export default about;
+export default notFound;
