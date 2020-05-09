@@ -6,9 +6,35 @@ const Detail = (props) => {
 
   return (
     <>
-      <img src={image} alt="detailImage" />
-      <span>{content}</span>
-      <span>{uploader}</span>
+      <img src={image} alt="detailImage" className="image" />
+      <span className="content">{content}</span>
+      <span className="uploader">{`작성자 : ${uploader}`}</span>
+
+      <style jsx>
+        {`
+          .image {
+            width: 30%;
+            margin-left: 80px;
+            margin-top: 50px;
+          }
+
+          .content {
+            position: absolute;
+            font-size: 20px;
+            margin-left: 40px;
+            margin-top: 120px;
+            margin-right: 50px;
+            word-break: break-all;
+          }
+
+          .uploader {
+            position: absolute;
+            font-size: 30px;
+            margin-left: 40px;
+            margin-top: 50px;
+          }
+        `}
+      </style>
     </>
   );
 };
