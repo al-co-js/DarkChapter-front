@@ -8,10 +8,11 @@ import { showModal } from '../../components/Modal';
 import Navigation from '../../components/Navigation';
 
 const registry = () => {
-  const token = Cookies.get('token');
+  let token;
   const [image, setImage] = useState('/imageSelect.svg');
 
   useEffect(() => {
+    token = Cookies.get('token');
     const delegate = async () => {
       if (!token) {
         showModal('오류', '로그인이 필요한 작업입니다', () => {
