@@ -14,6 +14,8 @@ const Modal = () => {
     setStatus('block');
     if (_callback) {
       setCallback({ method: _callback });
+    } else {
+      setCallback({ method: () => {} });
     }
   };
 
@@ -21,12 +23,8 @@ const Modal = () => {
     <>
       <div className="back" />
       <div className="modal">
-        <div className="modalTitle">
-          {title}
-        </div>
-        <div className="modalContent">
-          {content}
-        </div>
+        <div className="modalTitle">{title}</div>
+        <div className="modalContent">{content}</div>
         <img
           aria-hidden
           src="/close.svg"
@@ -127,12 +125,10 @@ const Modal = () => {
             transform: scale(1.2);
             cursor: pointer;
           }
-      `}
+        `}
       </style>
     </>
   );
 };
 
-export {
-  Modal, showModal,
-};
+export { Modal, showModal };
