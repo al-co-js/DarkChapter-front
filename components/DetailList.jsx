@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Router from 'next/router';
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 
@@ -8,8 +9,18 @@ let showDetail;
 
 const DetailList = () => {
   const [status, setStatus] = useState('none');
+  const [registry, setRegistry] = useState({ method: () => {} });
 
   showDetail = (_id) => {
+    setRegistry({
+      method: () => {
+        setStatus('none');
+        Router.push({
+          pathname: '/profiles/detail',
+          query: { id: _id },
+        });
+      },
+    });
     const delegate = async () => {
       try {
         const details = await axios.post('http://localhost:4000/profile/detail/get', { id: _id });
@@ -38,6 +49,14 @@ const DetailList = () => {
     delegate();
   };
 
+  const Close = () => {
+    setStatus('none');
+    const items = document.getElementsByClassName('detailItems');
+    for (let i = 0; i < items.length; i += 1) {
+      items[i].remove();
+    }
+  };
+
   return (
     <>
       <div className="backD" />
@@ -47,26 +66,25 @@ const DetailList = () => {
           src="/close.svg"
           alt="close"
           className="modalClose"
-          onKeyPress={() => {
-            setStatus('none');
-            const items = document.getElementsByClassName('detailItems');
-            for (let i = 0; i < items.length; i += 1) {
-              items[i].remove();
-            }
-          }}
-          onClick={() => {
-            setStatus('none');
-            const items = document.getElementsByClassName('detailItems');
-            for (let i = 0; i < items.length; i += 1) {
-              items[i].remove();
-            }
-          }}
+          onKeyPress={Close}
+          onClick={Close}
         />
-        <ul id="detailList" />
+        <ul id="detailList">
+          <div aria-hidden id="registryLink" onKeyPress={registry.method} onClick={registry.method}>
+            <img className="registry" src="/plus.svg" alt="registry" />
+          </div>
+        </ul>
       </div>
 
       <style jsx>
         {`
+          .registry {
+            margin-left: 120px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            cursor: pointer;
+          }
+
           #detailList {
             list-style: none;
           }
@@ -134,12 +152,10 @@ const DetailList = () => {
             transform: scale(1.2);
             cursor: pointer;
           }
-      `}
+        `}
       </style>
     </>
   );
 };
 
-export {
-  DetailList, showDetail,
-};
+export { DetailList, showDetail };
