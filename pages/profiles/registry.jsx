@@ -21,13 +21,18 @@ const registry = () => {
       }
 
       try {
-        const verified = await axios.post('http://localhost:4000/auth/verify', { token, need: true });
+        const verified = await axios.post('http://localhost:4000/auth/verify', {
+          token,
+          need: true,
+        });
         if (!verified) {
           showModal('오류', '로그인이 필요한 작업입니다', () => {
             Router.push('/login');
           });
         }
-        document.getElementById('uploader').textContent = `작성자 : ${verified.data.schoolId} ${verified.data.name}`;
+        document.getElementById(
+          'uploader',
+        ).textContent = `작성자 : ${verified.data.schoolId} ${verified.data.name}`;
       } catch (err) {
         showModal('오류', '로그인이 필요한 작업입니다', () => {
           Router.push('/login');
@@ -126,23 +131,17 @@ const registry = () => {
       <Navigation />
       <div className="container">
         <label htmlFor="file">
-          <img
-            className="image"
-            src={image}
-            alt="profileImage"
-          />
-          <input
-            type="file"
-            id="file"
-            accept="image/*"
-            onChange={ImageSelect}
-          />
+          <img className="image" src={image} alt="profileImage" />
+          <input type="file" id="file" accept="image/*" onChange={ImageSelect} />
         </label>
-        <div contentEditable className="target" id="name">이름 입력</div>
+        <div contentEditable className="target" id="name">
+          이름 입력
+        </div>
         <div className="uploader" id="uploader" />
-        <Button className="upload" onClick={Registry}>Upload</Button>
+        <Button className="upload" onClick={Registry}>
+          Upload
+        </Button>
       </div>
-
 
       <style jsx>
         {`
@@ -182,6 +181,7 @@ const registry = () => {
           }
         `}
       </style>
+
       <style jsx global>
         {`
           .upload {
@@ -194,7 +194,6 @@ const registry = () => {
           }
         `}
       </style>
-
     </>
   );
 };
