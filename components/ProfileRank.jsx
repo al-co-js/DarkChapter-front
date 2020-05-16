@@ -2,14 +2,17 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 
+import { hideLoading, showLoading } from './Loading';
 import Profile from './Profile';
 
 const ProfileRank = () => {
   const page = 1;
 
   const addItem = async () => {
+    showLoading();
     const profiles = await axios.get(`http://localhost:4000/profile/get?page=${page}&limit=${5}`);
     if (!profiles) {
+      hideLoading();
       return;
     }
 
@@ -40,6 +43,7 @@ const ProfileRank = () => {
       const conts = document.getElementsByClassName('profileItems');
       render(item, conts[conts.length - 1]);
     });
+    hideLoading();
   };
 
   useEffect(() => {

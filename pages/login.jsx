@@ -4,6 +4,7 @@ import Router from 'next/router';
 import React, { useEffect } from 'react';
 
 import Button from '../components/Button';
+import { hideLoading, showLoading } from '../components/Loading';
 import { showModal } from '../components/Modal';
 import Navigation from '../components/Navigation';
 import TextBox from '../components/TextBox';
@@ -43,15 +44,19 @@ const login = () => {
       return;
     }
     try {
+      showLoading();
       const token = await axios.post('http://localhost:4000/auth/login', { id, password });
       if (!token) {
+        hideLoading();
         showModal('오류', '알 수 없는 에러가 발생했습니다');
         return;
       }
 
+      hideLoading();
       Cookies.set('token', token.data, { maxAge: '25200' });
       Router.push('/');
     } catch (err) {
+      hideLoading();
       if (err.message === 'Network Error') {
         showModal('오류', '서버와 연결에 실패했습니다');
         return;

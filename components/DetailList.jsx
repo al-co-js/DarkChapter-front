@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { render } from 'react-dom';
 
 import Detail from './Detail';
+import { hideLoading, showLoading } from './Loading';
 
 let showDetail;
 
@@ -22,9 +23,11 @@ const DetailList = () => {
       },
     });
     const delegate = async () => {
+      showLoading();
       try {
         const details = await axios.post('http://localhost:4000/profile/detail/get', { id: _id });
         if (!details) {
+          hideLoading();
           return;
         }
         details.data.some((detail) => {
@@ -45,6 +48,7 @@ const DetailList = () => {
       } finally {
         setStatus('block');
       }
+      hideLoading();
     };
     delegate();
   };
@@ -90,8 +94,10 @@ const DetailList = () => {
           }
 
           .backD {
-            position: absolute;
+            position: fixed;
             display: ${status};
+            left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
             opacity: 0;
@@ -112,7 +118,7 @@ const DetailList = () => {
           }
 
           .modalD {
-            position: absolute;
+            position: fixed;
             display: ${status};
             left: 50%;
             top: 0%;

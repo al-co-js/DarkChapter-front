@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 
+import { hideLoading, showLoading } from './Loading';
 import Profile from './Profile';
 
 const ProfileList = () => {
@@ -9,8 +10,10 @@ const ProfileList = () => {
   let last = true;
 
   const addItem = async () => {
+    showLoading();
     const profiles = await axios.get(`http://localhost:4000/profile/get?page=${page}&limit=${10}`);
     if (!profiles) {
+      hideLoading();
       return;
     }
 
@@ -41,6 +44,7 @@ const ProfileList = () => {
         return true;
       }
     });
+    hideLoading();
   };
 
   useEffect(() => {
@@ -56,6 +60,7 @@ const ProfileList = () => {
             try {
               await addItem();
             } catch (err) {
+              hideLoading();
               last = false;
             }
           }

@@ -4,6 +4,7 @@ import { Router } from 'next/router';
 import React, { useEffect } from 'react';
 
 import Button from '../components/Button';
+import { hideLoading, showLoading } from '../components/Loading';
 import { showModal } from '../components/Modal';
 import Navigation from '../components/Navigation';
 import TextBox from '../components/TextBox';
@@ -52,11 +53,19 @@ const join = () => {
       return;
     }
     try {
+      showLoading();
       await axios.post('http://localhost:4000/auth/join', {
-        name, schoolId, id, password,
+        name,
+        schoolId,
+        id,
+        password,
       });
-      Router.push('/login');
+      hideLoading();
+      showModal('성공', '성공적으로 아이디를 생성했습니다', () => {
+        Router.push('/profiles');
+      });
     } catch (err) {
+      hideLoading();
       if (err.message === 'Network Error') {
         showModal('오류', '서버와 연결에 실패했습니다');
         return;
@@ -89,7 +98,9 @@ const join = () => {
         <TextBox className="textBox" id="id" placeholder="ID" />
         <TextBox className="textBox" id="password" placeholder="Password" type="password" />
         <TextBox className="textBox" id="verify" placeholder="Verify Password" type="password" />
-        <Button id="join" onClick={Join}>Join</Button>
+        <Button id="join" onClick={Join}>
+          Join
+        </Button>
       </Tile>
 
       <style jsx global>
@@ -101,7 +112,7 @@ const join = () => {
             transform: translate(-50%);
             width: 90%;
             height: 750px;
-            max-width: 610px
+            max-width: 610px;
           }
 
           .textBox {

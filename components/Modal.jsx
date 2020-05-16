@@ -44,8 +44,10 @@ const Modal = () => {
       <style jsx>
         {`
           .back {
-            position: absolute;
+            position: fixed;
             display: ${status};
+            left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
             opacity: 0;
@@ -66,7 +68,7 @@ const Modal = () => {
           }
 
           .modal {
-            position: absolute;
+            position: fixed;
             display: ${status};
             left: 50%;
             top: 0%;
