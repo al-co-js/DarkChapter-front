@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Tile = (props) => {
-  const {
-    className, id, children,
-  } = props;
+  const { className, id, children } = props;
 
   return (
     <>
@@ -40,6 +38,7 @@ Tile.propTypes = {
     PropTypes.string,
     PropTypes.element,
     PropTypes.node,
+    PropTypes.array,
   ]),
 };
 

@@ -46,7 +46,13 @@ Tile.defaultProps = {
 Tile.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.node,
+    PropTypes.array,
+  ]),
   onClick: PropTypes.func,
 };
 
