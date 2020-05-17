@@ -4,42 +4,53 @@ const Navigation = () => (
   <>
     <ui className="container">
       <li className="list">
-        <a className="link" href="/"> </a>
+        <a className="link" href="/">
+          {' '}
+        </a>
       </li>
       <li className="list">
-        <a className="link" href="/"> </a>
+        <a className="link" href="/">
+          {' '}
+        </a>
       </li>
       <li className="list">
-        <a className="link" href="/"> </a>
+        <a className="link" href="/">
+          {' '}
+        </a>
       </li>
     </ui>
 
     <style jsx>
       {`
-          .container {
-            position: relative;
-            float: right;
-            list-style: none;
-            right: 30px;
-            top: 30px;
-            z-index: 9999;
-          }
+        .container {
+          position: relative;
+          float: right;
+          list-style: none;
+          right: 30px;
+          top: 30px;
+          z-index: 9999;
+        }
 
-          .list {
-            display: inline-block;
-            margin-right: 35px;
-          }
+        .list {
+          display: inline-block;
+          margin-right: 35px;
+        }
 
-          .link {
-            text-decoration: none;
-            color: #d6d6d6;
-            font-size: 23px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        .link {
+          text-decoration: none;
+          color: #d6d6d6;
+          font-size: 23px;
+          transition: all ease-in-out 0.3s;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+
+          &:hover {
+            color: #ffea3d;
           }
-        `}
+        }
+      `}
     </style>
   </>
 );
