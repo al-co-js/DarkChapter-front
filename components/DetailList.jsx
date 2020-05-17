@@ -56,7 +56,7 @@ const DetailList = () => {
   const Close = () => {
     setStatus('none');
     const items = document.getElementsByClassName('detailItems');
-    for (let i = 0; i < items.length; i += 1) {
+    for (let i = items.length - 1; i >= 0; i -= 1) {
       items[i].remove();
     }
   };
