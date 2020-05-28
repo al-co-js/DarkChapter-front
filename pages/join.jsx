@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { Router } from 'next/router';
+import Router from 'next/router';
 import React, { useEffect } from 'react';
 
 import Button from '../components/Button';
@@ -62,7 +62,7 @@ const join = () => {
       });
       hideLoading();
       showModal('성공', '성공적으로 아이디를 생성했습니다', () => {
-        Router.push('/profiles');
+        Router.push('/login');
       });
     } catch (err) {
       hideLoading();
