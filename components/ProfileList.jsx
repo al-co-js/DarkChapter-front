@@ -10,43 +10,47 @@ const ProfileList = () => {
   let last = true;
 
   const addItem = async () => {
-    showLoading();
-    const profiles = await axios.get(
-      `http://darkchapter-back.herokuapp.com/profile/get?page=${page}&limit=${10}`,
-    );
-    if (!profiles) {
-      hideLoading();
-      return;
-    }
-
-    profiles.data.some((profile) => {
-      const item = (
-        <Profile
-          target={profile.target}
-          uploader={profile.uploader}
-          image={profile.image}
-          _id={profile._id}
-        />
+    try {
+      showLoading();
+      const profiles = await axios.get(
+        `http://darkchapter-back.herokuapp.com/profile/get?page=${page}&limit=${10}`,
       );
-      const cont = document.createElement('li');
-      cont.className = 'profileItems';
-      cont.style.width = '247px';
-      cont.style.display = 'inline-block';
-      cont.style.float = 'left';
-      cont.style.marginLeft = '50px';
-      cont.style.marginRight = '50px';
-      cont.style.marginTop = '40px';
-      cont.style.marginBottom = '30px';
-      try {
-        document.getElementById('profileList').appendChild(cont);
-        const conts = document.getElementsByClassName('profileItems');
-        render(item, conts[conts.length - 1]);
-        return false;
-      } catch (err) {
-        return true;
+      if (!profiles) {
+        hideLoading();
+        return;
       }
-    });
-    hideLoading();
+
+      profiles.data.some((profile) => {
+        const item = (
+          <Profile
+            target={profile.target}
+            uploader={profile.uploader}
+            image={profile.image}
+            _id={profile._id}
+          />
+        );
+        const cont = document.createElement('li');
+        cont.className = 'profileItems';
+        cont.style.width = '247px';
+        cont.style.display = 'inline-block';
+        cont.style.float = 'left';
+        cont.style.marginLeft = '50px';
+        cont.style.marginRight = '50px';
+        cont.style.marginTop = '40px';
+        cont.style.marginBottom = '30px';
+        try {
+          document.getElementById('profileList').appendChild(cont);
+          const conts = document.getElementsByClassName('profileItems');
+          render(item, conts[conts.length - 1]);
+          return false;
+        } catch (err) {
+          hideLoading();
+          return true;
+        }
+      });
+    } finally {
+      hideLoading();
+    }
   };
 
   useEffect(() => {

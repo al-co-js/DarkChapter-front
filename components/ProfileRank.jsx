@@ -9,43 +9,46 @@ const ProfileRank = () => {
   const page = 1;
 
   const addItem = async () => {
-    showLoading();
-    const profiles = await axios.get(
-      `http://darkchapter-back.herokuapp.com/profile/get?page=${page}&limit=${5}`,
-    );
-    if (!profiles) {
-      hideLoading();
-      return;
-    }
-
-    profiles.data.forEach((profile, i) => {
-      const item = (
-        <Profile
-          target={profile.target}
-          uploader={profile.uploader}
-          image={profile.image}
-          _id={profile._id}
-        />
+    try {
+      showLoading();
+      const profiles = await axios.get(
+        `http://darkchapter-back.herokuapp.com/profile/get?page=${page}&limit=${5}`,
       );
-      const cont = document.createElement('li');
-      cont.className = 'profileItems';
-      cont.style.width = '247px';
-      cont.style.display = 'inline-block';
-      cont.style.float = 'left';
-      cont.style.marginTop = '60px';
-      cont.style.marginRight = '300px';
-      cont.style.marginBottom = '30px';
-      if (i === 0) {
-        cont.style.transform = 'scale(1.3)';
-        cont.style.marginLeft = '50px';
-      } else {
-        cont.style.marginLeft = '-160px';
+      if (!profiles) {
+        hideLoading();
+        return;
       }
-      document.getElementById('profileList').appendChild(cont);
-      const conts = document.getElementsByClassName('profileItems');
-      render(item, conts[conts.length - 1]);
-    });
-    hideLoading();
+
+      profiles.data.forEach((profile, i) => {
+        const item = (
+          <Profile
+            target={profile.target}
+            uploader={profile.uploader}
+            image={profile.image}
+            _id={profile._id}
+          />
+        );
+        const cont = document.createElement('li');
+        cont.className = 'profileItems';
+        cont.style.width = '247px';
+        cont.style.display = 'inline-block';
+        cont.style.float = 'left';
+        cont.style.marginTop = '60px';
+        cont.style.marginRight = '300px';
+        cont.style.marginBottom = '30px';
+        if (i === 0) {
+          cont.style.transform = 'scale(1.3)';
+          cont.style.marginLeft = '50px';
+        } else {
+          cont.style.marginLeft = '-160px';
+        }
+        document.getElementById('profileList').appendChild(cont);
+        const conts = document.getElementsByClassName('profileItems');
+        render(item, conts[conts.length - 1]);
+      });
+    } finally {
+      hideLoading();
+    }
   };
 
   useEffect(() => {

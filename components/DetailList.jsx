@@ -23,8 +23,8 @@ const DetailList = () => {
       },
     });
     const delegate = async () => {
-      showLoading();
       try {
+        showLoading();
         const details = await axios.post(
           'http://darkchapter-back.herokuapp.com/profile/detail/get',
           { id: _id },
