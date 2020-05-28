@@ -54,25 +54,23 @@ const ProfileList = () => {
   };
 
   useEffect(() => {
-    window.onload = () => {
-      addItem();
-      window.addEventListener('scroll', async () => {
-        if (last) {
-          if (
-            window.scrollY + document.documentElement.clientHeight
-            === document.documentElement.scrollHeight
-          ) {
-            page += 1;
-            try {
-              await addItem();
-            } catch (err) {
-              hideLoading();
-              last = false;
-            }
+    addItem();
+    window.addEventListener('scroll', async () => {
+      if (last) {
+        if (
+          window.scrollY + document.documentElement.clientHeight
+          === document.documentElement.scrollHeight
+        ) {
+          page += 1;
+          try {
+            await addItem();
+          } catch (err) {
+            hideLoading();
+            last = false;
           }
         }
-      });
-    };
+      }
+    });
   });
 
   return (
