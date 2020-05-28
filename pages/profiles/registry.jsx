@@ -21,7 +21,7 @@ const registry = () => {
       }
 
       try {
-        const verified = await axios.post('http://localhost:4000/auth/verify', {
+        const verified = await axios.post('http://darkchapter-back.herokuapp.com/auth/verify', {
           token,
           need: true,
         });
@@ -79,7 +79,11 @@ const registry = () => {
     }
 
     try {
-      await axios.post('http://localhost:4000/profile/registry', { token, target: name, image });
+      await axios.post('http://darkchapter-back.herokuapp.com/profile/registry', {
+        token,
+        target: name,
+        image,
+      });
       showModal('성공', '성공적으로 프로필을 생성했습니다', () => {
         Router.push('/profiles');
       });

@@ -10,7 +10,9 @@ const ProfileRank = () => {
 
   const addItem = async () => {
     showLoading();
-    const profiles = await axios.get(`http://localhost:4000/profile/get?page=${page}&limit=${5}`);
+    const profiles = await axios.get(
+      `http://darkchapter-back.herokuapp.com/profile/get?page=${page}&limit=${5}`,
+    );
     if (!profiles) {
       hideLoading();
       return;
@@ -54,11 +56,7 @@ const ProfileRank = () => {
     <>
       <ul id="profileList" />
       <a id="moreLink" href="/">
-        <img
-          className="more"
-          id="more"
-          alt="more"
-        />
+        <img className="more" id="more" alt="more" />
       </a>
 
       <style jsx>

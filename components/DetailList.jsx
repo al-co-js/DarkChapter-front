@@ -25,7 +25,10 @@ const DetailList = () => {
     const delegate = async () => {
       showLoading();
       try {
-        const details = await axios.post('http://localhost:4000/profile/detail/get', { id: _id });
+        const details = await axios.post(
+          'http://darkchapter-back.herokuapp.com/profile/detail/get',
+          { id: _id },
+        );
         if (!details) {
           hideLoading();
           return;

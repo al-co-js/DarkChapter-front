@@ -11,7 +11,9 @@ const ProfileList = () => {
 
   const addItem = async () => {
     showLoading();
-    const profiles = await axios.get(`http://localhost:4000/profile/get?page=${page}&limit=${10}`);
+    const profiles = await axios.get(
+      `http://darkchapter-back.herokuapp.com/profile/get?page=${page}&limit=${10}`,
+    );
     if (!profiles) {
       hideLoading();
       return;
@@ -74,11 +76,7 @@ const ProfileList = () => {
       <ul id="profileList">
         <li>
           <a id="registryLink" href="/profiles/registry">
-            <img
-              className="registry"
-              src="/plus.svg"
-              alt="registry"
-            />
+            <img className="registry" src="/plus.svg" alt="registry" />
           </a>
         </li>
       </ul>

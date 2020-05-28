@@ -18,7 +18,10 @@ const profiles = () => {
       }
 
       try {
-        const verified = await axios.post('http://localhost:4000/auth/verify', { token, need: true });
+        const verified = await axios.post('http://darkchapter-back.herokuapp.com/auth/verify', {
+          token,
+          need: true,
+        });
         if (!verified) {
           showModal('오류', '로그인이 필요한 작업입니다', () => {
             Router.push('/login');

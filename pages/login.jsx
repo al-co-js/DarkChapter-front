@@ -45,7 +45,7 @@ const login = () => {
     }
     try {
       showLoading();
-      const token = await axios.post('http://localhost:4000/auth/login', { id, password });
+      const token = await axios.post('http://darkchapter-back.herokuapp.com/auth/login', { id, password });
       if (!token) {
         hideLoading();
         showModal('오류', '알 수 없는 에러가 발생했습니다');

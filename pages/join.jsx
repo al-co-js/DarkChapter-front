@@ -54,7 +54,7 @@ const join = () => {
     }
     try {
       showLoading();
-      await axios.post('http://localhost:4000/auth/join', {
+      await axios.post('http://darkchapter-back.herokuapp.com/auth/join', {
         name,
         schoolId,
         id,

@@ -28,7 +28,7 @@ const detail = () => {
       }
 
       try {
-        const verified = await axios.post('http://localhost:4000/auth/verify', {
+        const verified = await axios.post('http://darkchapter-back.herokuapp.com/auth/verify', {
           token,
           need: true,
         });
@@ -82,7 +82,7 @@ const detail = () => {
     }
 
     try {
-      await axios.post('http://localhost:4000/profile/detail/registry', {
+      await axios.post('http://darkchapter-back.herokuapp.com/profile/detail/registry', {
         token,
         id,
         image,
