@@ -4,6 +4,7 @@ import Router, { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import Button from '../../components/Button';
+import { hideLoading, showLoading } from '../../components/Loading';
 import { showModal } from '../../components/Modal';
 import Navigation from '../../components/Navigation';
 
@@ -82,16 +83,19 @@ const detail = () => {
     }
 
     try {
+      showLoading();
       await axios.post('http://darkchapter-back.herokuapp.com/profile/detail/registry', {
         token,
         id,
         image,
         content,
       });
+      hideLoading();
       showModal('성공', '성공적으로 내용을 추가했습니다', () => {
         Router.push('/profiles');
       });
     } catch (err) {
+      hideLoading();
       if (err.message === 'Network Error') {
         showModal('오류', '서버와 연결에 실패했습니다');
         return;
