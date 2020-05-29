@@ -177,6 +177,7 @@ const detail = () => {
             width: 30%;
             margin-left: 80px;
             margin-top: 50px;
+            cursor: pointer;
           }
 
           .content {
