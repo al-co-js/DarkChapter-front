@@ -12,6 +12,7 @@ import Tile from '../components/Tile';
 
 const join = () => {
   useEffect(() => {
+    Cookies.remove('token');
     const page = [
       {
         name: 'Login',
@@ -32,10 +33,6 @@ const join = () => {
       links[i].href = `/${page[i].link}`;
       links[i].textContent = page[i].name;
     }
-  });
-
-  useEffect(() => {
-    Cookies.remove('token');
   });
 
   const Join = async () => {
