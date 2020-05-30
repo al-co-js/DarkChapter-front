@@ -9,13 +9,17 @@ const Navigation = () => {
   }, set] = useSpring(() => ({ x: 0, y: 0 }));
 
   const bind = useDrag(({ down, movement: [mx, my] }) => {
+    let buf = my;
+    if (my <= 0) {
+      buf = my + 100;
+    }
     if (!open) {
       set({
-        x: down && my < 250 ? mx / 4 : 0,
-        y: down && my < 250 ? my : 0,
-        width: down && my < 250 ? my * 6 : 300,
-        height: down && my < 250 ? my * 1.5 : 300,
-        marginLeft: down && my < 250 && my * 6 > 300 ? -(my * 3) : -150,
+        x: down && buf < 250 ? mx / 4 : 0,
+        y: down && buf < 250 ? buf : 0,
+        width: down && buf < 250 ? buf * 6 : 300,
+        height: down && buf < 250 ? buf * 1.5 : 300,
+        marginLeft: down && buf < 250 && buf * 6 > 300 ? -(buf * 3) : -150,
       });
       if (my >= 250) {
         open = true;
@@ -28,10 +32,6 @@ const Navigation = () => {
         });
       }
     } else {
-      let buf = my;
-      if (my <= 0) {
-        buf = my + 250;
-      }
       set({
         x: 250,
         y: down && buf < 250 && buf >= 80 ? buf : 250,
