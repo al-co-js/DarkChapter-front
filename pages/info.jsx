@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 import Navigation from '../components/Navigation';
 
-const about = () => {
+const info = () => {
   useEffect(() => {
     const isLogged = Cookies.get('token');
     const page = isLogged
@@ -108,4 +108,4 @@ const about = () => {
   );
 };
 
-export default about;
+export default info;
