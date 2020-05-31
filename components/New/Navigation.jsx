@@ -612,7 +612,7 @@ const Navigation = () => {
             top: 0;
             height: 100%;
             width: 50%;
-            background: #1ba0f2;
+            background: #f2811d;
           }
 
           .chevron:before {
@@ -675,7 +675,7 @@ const Navigation = () => {
             height: 5px;
             border-radius: 2px;
             margin-left: -5px;
-            background-color: #f2811d;
+            background-color: #1ba0f2;
           }
         `}
       </style>
