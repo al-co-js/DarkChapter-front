@@ -7,18 +7,14 @@ const TextBox = (props) => {
   } = props;
 
   const [state, setState] = useState({
-    x: 2,
     y: 23,
-    scale: 1,
     color: '#777777',
   });
   const [ref, setRef] = useState();
 
   const focus = () => {
     setState({
-      x: -168,
       y: 0,
-      scale: 0.8,
       color: '#1ba0f2',
     });
   };
@@ -26,10 +22,13 @@ const TextBox = (props) => {
   const blur = () => {
     if (ref.value === '') {
       setState({
-        x: 2,
         y: 23,
-        scale: 1,
         color: '#777777',
+      });
+    } else {
+      setState({
+        y: 0,
+        color: '#f2811d',
       });
     }
   };
@@ -56,8 +55,8 @@ const TextBox = (props) => {
             pointer-events: none;
             transition: all 0.2s ease-out;
             margin-bottom: -10px;
-            transform: translate(${state.x}px, ${state.y}px) scale(${state.scale});
-            font-size: 22px;
+            transform: translate(2px, ${state.y}px);
+            font-size: 18px;
             color: ${state.color};
           }
 
