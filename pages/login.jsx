@@ -24,8 +24,8 @@ const login = () => {
         link: 'join',
       },
       {
-        name: 'About',
-        link: 'about',
+        name: 'Info',
+        link: 'info',
       },
     ];
 

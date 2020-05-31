@@ -23,8 +23,8 @@ const join = () => {
         link: '',
       },
       {
-        name: 'About',
-        link: 'about',
+        name: 'Info',
+        link: 'info',
       },
     ];
 

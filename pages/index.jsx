@@ -18,8 +18,8 @@ const main = () => {
           link: 'profiles',
         },
         {
-          name: 'About',
-          link: 'about',
+          name: 'Info',
+          link: 'info',
         },
       ]
       : [
@@ -32,8 +32,8 @@ const main = () => {
           link: 'join',
         },
         {
-          name: 'About',
-          link: 'about',
+          name: 'Info',
+          link: 'info',
         },
       ];
     const links = document.getElementsByClassName('link');
