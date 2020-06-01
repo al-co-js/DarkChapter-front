@@ -1,50 +1,94 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Button = ({
   className, id, children, onClick,
-}) => (
-  <>
-    <button
-      className={className}
-      id={id}
-      type="button"
-      onClick={() => {
-        setTimeout(onClick, 150);
-      }}
-    >
-      {children}
-    </button>
+}) => {
+  const [ref, setRef] = useState();
 
-    <style jsx>
-      {`
-        button {
-          transition: all ease 0.6s;
-          font-size: 35px;
-          width: 256px;
-          height: 56px;
-          color: #1ba0f2;
-          border: 2px solid;
-          border-radius: 15px;
-          border-color: #1ba0f2;
-          background-color: #ffffff;
-          background-image: url('/water.svg');
-          background-repeat: repeat-x;
-          background-position: 0 -200%;
+  return (
+    <>
+      <button
+        ref={(dis) => {
+          setRef(dis);
+        }}
+        className={className}
+        id={id}
+        type="button"
+        onClick={(e) => {
+          const child = document.createElement('span');
+          const width = ref.offsetWidth;
+          const height = ref.offsetHeight;
+          const posX = e.pageX - ref.offsetLeft;
+          const posY = e.pageY - ref.offsetTop;
+          const buf = width <= height ? height : width;
+          child.className = 'ripple';
+          child.style.width = `${buf}px`;
+          child.style.height = `${buf}px`;
+          child.style.left = `${posX}px`;
+          child.style.top = `${posY - buf * 0.4}px`;
+          child.addEventListener('animationend', () => {
+            child.remove();
+          });
+          ref.appendChild(child);
+          setTimeout(onClick, 1000);
+        }}
+      >
+        {children}
+      </button>
 
-          &:hover {
-            color: #ffffff;
-            background-position: 100% 100%;
+      <style jsx>
+        {`
+          button {
+            transition: all ease 0.6s;
+            font-size: 30px;
+            width: 200px;
+            height: 56px;
+            color: #1ba0f2;
+            border-width: 2px;
+            border-style: solid;
+            border-radius: 15px;
+            border-color: #1ba0f2;
+            background-color: #ffffff;
+            background-image: url('/water.svg');
+            background-repeat: repeat-x;
+            background-position: 0 -200%;
+            overflow: hidden;
+
+            &:hover {
+              color: #ffffff;
+              background-position: 100% 100%;
+            }
+
+            &:focus {
+              outline: none;
+            }
+          }
+        `}
+      </style>
+
+      <style jsx global>
+        {`
+          .ripple {
+            background-color: #ffffffae;
+            position: absolute;
+            transform: scale(0);
+            animation: ripple 1s;
+            border-radius: 50%;
+            z-index: 9999;
           }
 
-          &:focus {
-            outline: none;
+          @keyframes ripple {
+            100% {
+              transform: scale(2);
+              opacity: 0;
+            }
           }
-        }
-      `}
-    </style>
-  </>
-);
+        `}
+      </style>
+    </>
+  );
+};
 
 Button.defaultProps = {
   className: '',
