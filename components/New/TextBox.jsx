@@ -1,21 +1,20 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-const TextBox = (props) => {
-  const {
-    type, placeholder, className, id, onKeyPress,
-  } = props;
-
+const TextBox = ({
+  type, placeholder, className, id, onKeyPress, rule,
+}) => {
   const [state, setState] = useState({
     y: 23,
     color: '#777777',
   });
   const [ref, setRef] = useState();
+  const [msg, setMsg] = useState();
 
   const focus = () => {
     setState({
       y: 0,
-      color: '#1ba0f2',
+      color: '#f2811d',
     });
   };
 
@@ -26,16 +25,29 @@ const TextBox = (props) => {
         color: '#777777',
       });
     } else {
-      setState({
-        y: 0,
-        color: '#f2811d',
-      });
+      const result = rule(ref.value);
+      if (result.success) {
+        setMsg();
+        setState({
+          y: 0,
+          color: '#1ba0f2',
+        });
+      } else {
+        setMsg(` - ${result.msg}`);
+        setState({
+          y: 0,
+          color: '#f26666',
+        });
+      }
     }
   };
 
   return (
     <>
-      <div>{placeholder}</div>
+      <div>
+        {placeholder}
+        <span>{msg}</span>
+      </div>
       <input
         ref={(dis) => {
           setRef(dis);
@@ -58,6 +70,10 @@ const TextBox = (props) => {
             transform: translate(2px, ${state.y}px);
             font-size: 18px;
             color: ${state.color};
+
+            span {
+              font-size: 14px;
+            }
           }
 
           input {
@@ -70,7 +86,7 @@ const TextBox = (props) => {
             transition: all 0.2s ease-out;
 
             &:focus {
-              border-color: #1ba0f2;
+              border-color: #f2811d;
             }
           }
         `}
@@ -85,6 +101,7 @@ TextBox.defaultProps = {
   className: '',
   id: '',
   onKeyPress: () => {},
+  rule: () => ({ success: true }),
 };
 
 TextBox.propTypes = {
@@ -93,6 +110,7 @@ TextBox.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   onKeyPress: PropTypes.func,
+  rule: PropTypes.func,
 };
 
 export default TextBox;
