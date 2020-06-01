@@ -1,32 +1,23 @@
 import React from 'react';
 
-import Navigation from '../components/New/Navigation';
-import TextBox from '../components/New/TextBox';
+import Button from '../components/New/Button';
 
 const test = () => (
   <>
-    <Navigation />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
-    <TextBox placeholder="placeholder" />
+    <Button className="bu">
+      Button
+    </Button>
+
+    <style jsx global>
+      {`
+        .bu {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      `}
+    </style>
   </>
 );
 
