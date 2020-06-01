@@ -54,6 +54,7 @@ const Button = ({
             background-repeat: repeat-x;
             background-position: 0 -200%;
             overflow: hidden;
+            user-select: none;
 
             &:hover {
               color: #ffffff;
