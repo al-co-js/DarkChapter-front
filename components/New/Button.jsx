@@ -71,7 +71,7 @@ const Button = ({
       <style jsx global>
         {`
           .ripple {
-            background-color: #ffffffae;
+            background-color: #ffffff99;
             position: absolute;
             transform: scale(0);
             animation: ripple 1s;
