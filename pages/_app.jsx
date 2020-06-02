@@ -1,10 +1,11 @@
-import React from 'react';
+import '../styles/globalStyle.scss';
+
 import Head from 'next/head';
-import { Modal } from '../components/Modal';
+import React from 'react';
+
 import { DetailList } from '../components/DetailList';
 import { Loading } from '../components/Loading';
-
-import '../styles/globalStyle.scss';
+import { Modal } from '../components/New/Modal';
 
 const app = ({ Component, pageProps }) => (
   <>
