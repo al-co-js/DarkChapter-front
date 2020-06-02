@@ -40,10 +40,10 @@ const Button = ({
       <style jsx>
         {`
           button {
-            transition: all ease 0.6s;
-            font-size: 30px;
-            width: 200px;
-            height: 56px;
+            transition: all ease 0.8s;
+            font-size: 22px;
+            width: 160px;
+            height: 46px;
             color: #1ba0f2;
             border-width: 2px;
             border-style: solid;
