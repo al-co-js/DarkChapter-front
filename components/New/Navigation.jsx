@@ -9,6 +9,7 @@ const Navigation = () => {
     y: 0,
     width: 400,
     height: 300,
+    config: { mass: 10, tension: 800, friction: 100 },
   }));
   const [le, setLe] = useSpring(() => ({
     x: -260,
@@ -663,7 +664,7 @@ const Navigation = () => {
             align-items: center;
             box-shadow: 0 3px 6px #00000044;
             background-color: #ffffff;
-            overflow-x: hidden;
+            overflow: hidden;
             top: -250px;
             user-select: none;
           }
