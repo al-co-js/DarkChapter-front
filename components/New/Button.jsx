@@ -25,8 +25,8 @@ const Button = ({
           child.className = 'ripple';
           child.style.width = `${buf}px`;
           child.style.height = `${buf}px`;
-          child.style.left = `${posX}px`;
-          child.style.top = `${posY - buf * 0.35}px`;
+          child.style.left = `${posX - 2}px`;
+          child.style.top = `${posY - buf * 0.37}px`;
           child.addEventListener('animationend', () => {
             child.remove();
           });
