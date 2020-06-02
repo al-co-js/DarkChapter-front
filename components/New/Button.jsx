@@ -17,16 +17,17 @@ const Button = ({
         type="button"
         onClick={(e) => {
           const child = document.createElement('span');
+          const rect = ref.getBoundingClientRect();
+          const posX = e.pageX - (rect.left + window.pageXOffset);
+          const posY = e.pageY - (rect.top + window.pageYOffset);
           const width = ref.offsetWidth;
           const height = ref.offsetHeight;
-          const posX = e.pageX - ref.offsetLeft;
-          const posY = e.pageY - ref.offsetTop;
           const buf = width <= height ? height : width;
           child.className = 'ripple';
           child.style.width = `${buf}px`;
           child.style.height = `${buf}px`;
-          child.style.left = `${posX - 2}px`;
-          child.style.top = `${posY - buf * 0.37}px`;
+          child.style.left = `${posX - width * 0.514}px`;
+          child.style.top = `${posY - height * 1.79}px`;
           child.addEventListener('animationend', () => {
             child.remove();
           });
