@@ -41,7 +41,7 @@ const Button = ({
       <style jsx>
         {`
           button {
-            transition: all ease 0.8s;
+            transition: all ease 0.6s;
             font-size: 22px;
             width: 160px;
             height: 46px;
@@ -53,13 +53,13 @@ const Button = ({
             background-color: #ffffff;
             background-image: url('/water.svg');
             background-repeat: repeat-x;
-            background-position: 0 -200%;
+            background-position: 0 -120%;
             overflow: hidden;
             user-select: none;
 
             &:hover {
               color: #ffffff;
-              background-position: 100% 100%;
+              background-position: 100% 70%;
             }
 
             &:focus {
