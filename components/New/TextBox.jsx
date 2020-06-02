@@ -44,25 +44,25 @@ const TextBox = ({
 
   return (
     <>
-      <div>
-        {placeholder}
-        <span>{msg}</span>
+      <div className={className} id={id}>
+        <div>
+          {placeholder}
+          <span>{msg}</span>
+        </div>
+        <input
+          ref={(dis) => {
+            setRef(dis);
+          }}
+          onFocus={() => focus()}
+          onBlur={() => blur()}
+          type={type}
+          onKeyPress={onKeyPress}
+        />
       </div>
-      <input
-        ref={(dis) => {
-          setRef(dis);
-        }}
-        onFocus={() => focus()}
-        onBlur={() => blur()}
-        className={className}
-        id={id}
-        type={type}
-        onKeyPress={onKeyPress}
-      />
 
       <style jsx>
         {`
-          div {
+          div div {
             user-select: none;
             pointer-events: none;
             transition: all 0.2s ease-out;
