@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 const Button = ({
-  className, id, children, onClick,
+  className, id, children, onClick, color,
 }) => {
   const [ref, setRef] = useState();
 
@@ -32,7 +32,7 @@ const Button = ({
             child.remove();
           });
           ref.appendChild(child);
-          setTimeout(onClick, 1000);
+          setTimeout(onClick, 300);
         }}
       >
         {children}
@@ -45,13 +45,13 @@ const Button = ({
             font-size: 22px;
             width: 160px;
             height: 46px;
-            color: #1ba0f2;
+            color: ${color === 'blue' ? '#1ba0f2' : '#f2811d'};
             border-width: 2px;
             border-style: solid;
             border-radius: 15px;
-            border-color: #1ba0f2;
+            border-color: ${color === 'blue' ? '#1ba0f2' : '#f2811d'};
             background-color: #ffffff;
-            background-image: url('/water.svg');
+            background-image: url('/${color}Water.svg');
             background-repeat: repeat-x;
             background-position: 0 -120%;
             overflow: hidden;
@@ -97,6 +97,7 @@ Button.defaultProps = {
   id: '',
   children: null,
   onClick: () => {},
+  color: 'blue',
 };
 
 Button.propTypes = {
@@ -110,6 +111,7 @@ Button.propTypes = {
     PropTypes.array,
   ]),
   onClick: PropTypes.func,
+  color: PropTypes.string,
 };
 
 export default Button;
