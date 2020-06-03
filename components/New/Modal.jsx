@@ -10,51 +10,8 @@ const Modal = () => {
   const [back, setBack] = useState(<></>);
   const [modal, setModal] = useState(<></>);
   const [state, setState] = useState('none');
-  const [type, setType] = useState('ok');
-  const [icon, setIcon] = useState('success');
-
-  showModal = (_content, _type, _icon) => {
-    if (_type && _type !== '') {
-      setType(_type);
-    }
-    setContent(_content);
-    if (_icon && _icon !== '') {
-      setIcon(_icon);
-    }
-    setState('block');
-    back.animate(
-      [
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-        },
-      ],
-      {
-        easing: 'ease',
-        duration: 400,
-        fill: 'both',
-      },
-    );
-    modal.animate(
-      [
-        {
-          opacity: 0,
-          top: '-80%',
-        },
-        {
-          opacity: 1,
-          top: '-30%',
-        },
-      ],
-      {
-        easing: 'ease',
-        duration: 400,
-        fill: 'both',
-      },
-    );
-  };
+  const [type, setType] = useState(<></>);
+  const [icon, setIcon] = useState(<></>);
 
   const closeModal = () => {
     back.animate(
@@ -100,104 +57,140 @@ const Modal = () => {
     closeModal();
   };
 
-  const buttonType = () => {
-    if (type === 'ok') {
-      return (
-        <>
-          <Button className="ok" onClick={() => ok()}>
-            확인
-          </Button>
-        </>
-      );
+  showModal = (_content, _type, _icon) => {
+    if (_type && _type !== '') {
+      if (_type === 'ok') {
+        setType(
+          <>
+            <Button className="ok" onClick={() => ok()}>
+              확인
+            </Button>
+          </>,
+        );
+      } else {
+        setType(
+          <>
+            <Button className="ok" onClick={() => ok()}>
+              확인
+            </Button>
+            <Button className="cancel" color="orange" onClick={() => cancel()}>
+              취소
+            </Button>
+          </>,
+        );
+      }
     }
-    return (
-      <>
-        <Button className="ok" onClick={() => ok()}>
-          확인
-        </Button>
-        <Button className="cancel" color="orange" onClick={() => cancel()}>
-          취소
-        </Button>
-      </>
-    );
-  };
-
-  const iconType = () => {
-    if (icon === 'success') {
-      return (
-        <div className="svg-box">
-          <svg className="circular green-stroke">
-            <circle
-              className="path"
-              cx="75"
-              cy="75"
-              r="50"
-              fill="none"
-              strokeWidth="5"
-              strokeMiterlimit="10"
-            />
-          </svg>
-          <svg className="checkmark green-stroke">
-            <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-489.57,-205.679)">
-              <path
-                className="checkmark__check"
+    setContent(_content);
+    if (_icon && _icon !== '') {
+      if (_icon === 'success') {
+        setIcon(
+          <div className="svg-box">
+            <svg className="circular green-stroke">
+              <circle
+                className="path"
+                cx="75"
+                cy="75"
+                r="50"
                 fill="none"
-                d="M616.306,283.025L634.087,300.805L673.361,261.53"
+                strokeWidth="5"
+                strokeMiterlimit="10"
               />
-            </g>
-          </svg>
-        </div>
-      );
+            </svg>
+            <svg className="checkmark green-stroke">
+              <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-489.57,-205.679)">
+                <path
+                  className="checkmark__check"
+                  fill="none"
+                  d="M616.306,283.025L634.087,300.805L673.361,261.53"
+                />
+              </g>
+            </svg>
+          </div>,
+        );
+      } else if (_icon === 'error') {
+        setIcon(
+          <div className="svg-box">
+            <svg className="circular red-stroke">
+              <circle
+                className="path"
+                cx="75"
+                cy="75"
+                r="50"
+                fill="none"
+                strokeWidth="5"
+                strokeMiterlimit="10"
+              />
+            </svg>
+            <svg className="cross red-stroke">
+              <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-502.652,-204.518)">
+                <path className="first-line" d="M634.087,300.805L673.361,261.53" fill="none" />
+              </g>
+              <g transform="matrix(-1.28587e-16,-0.79961,0.79961,-1.28587e-16,-204.752,543.031)">
+                <path className="second-line" d="M634.087,300.805L673.361,261.53" />
+              </g>
+            </svg>
+          </div>,
+        );
+      } else {
+        setIcon(
+          <div className="svg-box">
+            <svg className="circular yellow-stroke">
+              <circle
+                className="path"
+                cx="75"
+                cy="75"
+                r="50"
+                fill="none"
+                strokeWidth="5"
+                strokeMiterlimit="10"
+              />
+            </svg>
+            <svg className="alert-sign yellow-stroke">
+              <g transform="matrix(1,0,0,1,-615.516,-257.346)">
+                <g transform="matrix(0.56541,-0.56541,0.56541,0.56541,93.7153,495.69)">
+                  <path className="line" d="M634.087,300.805L673.361,261.53" fill="none" />
+                </g>
+                <g transform="matrix(2.27612,-2.46519e-32,0,2.27612,-792.339,-404.147)">
+                  <circle className="dot" cx="621.52" cy="316.126" r="1.318" />
+                </g>
+              </g>
+            </svg>
+          </div>,
+        );
+      }
     }
-    if (icon === 'error') {
-      return (
-        <div className="svg-box">
-          <svg className="circular red-stroke">
-            <circle
-              className="path"
-              cx="75"
-              cy="75"
-              r="50"
-              fill="none"
-              strokeWidth="5"
-              strokeMiterlimit="10"
-            />
-          </svg>
-          <svg className="cross red-stroke">
-            <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-502.652,-204.518)">
-              <path className="first-line" d="M634.087,300.805L673.361,261.53" fill="none" />
-            </g>
-            <g transform="matrix(-1.28587e-16,-0.79961,0.79961,-1.28587e-16,-204.752,543.031)">
-              <path className="second-line" d="M634.087,300.805L673.361,261.53" />
-            </g>
-          </svg>
-        </div>
-      );
-    }
-    return (
-      <div className="svg-box">
-        <svg className="circular yellow-stroke">
-          <circle
-            className="path"
-            cx="75"
-            cy="75"
-            r="50"
-            fill="none"
-            strokeWidth="5"
-            strokeMiterlimit="10"
-          />
-        </svg>
-        <svg className="alert-sign yellow-stroke">
-          <g transform="matrix(1,0,0,1,-615.516,-257.346)">
-            <g transform="matrix(0.56541,-0.56541,0.56541,0.56541,93.7153,495.69)">
-              <path className="line" d="M634.087,300.805L673.361,261.53" fill="none" />
-            </g>
-            <g transform="matrix(2.27612,-2.46519e-32,0,2.27612,-792.339,-404.147)">
-              <circle className="dot" cx="621.52" cy="316.126" r="1.318" />
-            </g>
-          </g>
-        </svg>
-      </div>
+    setState('block');
+    back.animate(
+      [
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+      ],
+      {
+        easing: 'ease',
+        duration: 400,
+        fill: 'both',
+      },
+    );
+    modal.animate(
+      [
+        {
+          opacity: 0,
+          top: '-80%',
+        },
+        {
+          opacity: 1,
+          top: '-30%',
+        },
+      ],
+      {
+        easing: 'ease',
+        duration: 400,
+        fill: 'both',
+      },
     );
   };
 
@@ -224,9 +217,9 @@ const Modal = () => {
           className="modal"
           style={spring}
         >
-          {iconType()}
+          {icon}
           <span>{content}</span>
-          {buttonType()}
+          {type}
         </animated.div>
       </div>
 
@@ -254,18 +247,6 @@ const Modal = () => {
 
       <style jsx global>
         {`
-          ${type === 'ok'
-          ? `.ok {
-            position: absolute;
-            right: 20px;
-            bottom: 20px;
-          }`
-          : `.ok {
-            position: absolute;
-            right: 200px;
-            bottom: 20px;
-          }`}
-
           .svg-box {
             position: absolute;
             display: inline-block;
@@ -429,10 +410,16 @@ const Modal = () => {
               transform: scale(1);
             }
           }
+          
+          .ok {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+          }
 
           .cancel {
             position: absolute;
-            right: 20px;
+            right: 200px;
             bottom: 20px;
           }
 
