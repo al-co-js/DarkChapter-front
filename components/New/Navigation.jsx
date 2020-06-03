@@ -65,7 +65,9 @@ const Navigation = () => {
     const items = document.getElementsByClassName('naviItem');
     const container = document.getElementsByClassName('container')[0];
     setLe({
-      x: items[index].getBoundingClientRect().left - container.getBoundingClientRect().left,
+      x:
+        items[index].getBoundingClientRect().left
+        - container.getBoundingClientRect().left,
     });
   };
 
@@ -251,7 +253,11 @@ const Navigation = () => {
                         />
                       </g>
                     </g>
-                    <g id="그룹_4" data-name="그룹 4" transform="translate(61.766 54.23)">
+                    <g
+                      id="그룹_4"
+                      data-name="그룹 4"
+                      transform="translate(61.766 54.23)"
+                    >
                       <g id="그룹_3" data-name="그룹 3">
                         <path
                           id="패스_16"
@@ -268,7 +274,11 @@ const Navigation = () => {
                         />
                       </g>
                     </g>
-                    <g id="그룹_6" data-name="그룹 6" transform="translate(60.183 34.915)">
+                    <g
+                      id="그룹_6"
+                      data-name="그룹 6"
+                      transform="translate(60.183 34.915)"
+                    >
                       <g id="그룹_5" data-name="그룹 5">
                         <path
                           id="패스_17"
@@ -409,7 +419,11 @@ const Navigation = () => {
                     alt="join"
                   >
                     <g id="join" transform="translate(-1439.346 -60.784)">
-                      <g id="_-_2_" data-name="- (2)" transform="translate(1503.347 136.784)">
+                      <g
+                        id="_-_2_"
+                        data-name="- (2)"
+                        transform="translate(1503.347 136.784)"
+                      >
                         <g id="그룹_8" data-name="그룹 8">
                           <g id="그룹_7" data-name="그룹 7">
                             <path
@@ -425,7 +439,11 @@ const Navigation = () => {
                             />
                           </g>
                         </g>
-                        <g id="그룹_10" data-name="그룹 10" transform="translate(13.326 13.153)">
+                        <g
+                          id="그룹_10"
+                          data-name="그룹 10"
+                          transform="translate(13.326 13.153)"
+                        >
                           <g id="그룹_9" data-name="그룹 9">
                             <path
                               id="패스_28"
