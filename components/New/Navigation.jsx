@@ -552,6 +552,12 @@ const Navigation = () => {
             align-items: center;
             text-align: center;
             z-index: 9999;
+            opacity: 0.3;
+            transition: opacity 0.3s ease-out;
+
+            &:hover {
+              opacity: 1;
+            }
           }
 
           .navWrapper {
