@@ -7,17 +7,27 @@ import TextBox from '../components/New/TextBox';
 
 const test = () => (
   <>
-    <Button className="bu" onClick={() => showModal('프로필 생성에 성공했습니다', 'ok', 'success')}>
-      Button
+    <Button className="bu1" onClick={() => showModal('프로필 생성에 성공했습니다', 'ok', 'success')}>
+      ok
+    </Button>
+    <Button className="bu2" onClick={() => showModal('프로필 생성에 성공했습니다', 'okcancel', 'success')}>
+      ok cancel
     </Button>
     <Navigation />
     <TextBox className="te" placeholder="ID" />
 
     <style jsx global>
       {`
-        .bu {
+        .bu1 {
           position: absolute;
-          left: 50%;
+          left: 40%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .bu2 {
+          position: absolute;
+          left: 60%;
           top: 50%;
           transform: translate(-50%, -50%);
         }
