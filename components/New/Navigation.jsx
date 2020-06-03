@@ -546,7 +546,7 @@ const Navigation = () => {
           }
 
           .wrapper {
-            position: sticky;
+            position: fixed;
             width: 100%;
             height: 0;
             align-items: center;
