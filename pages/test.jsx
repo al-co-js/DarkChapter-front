@@ -7,7 +7,7 @@ import TextBox from '../components/New/TextBox';
 
 const test = () => (
   <>
-    <Button className="bu" onClick={() => showModal('o', 'a')}>
+    <Button className="bu" onClick={() => showModal('프로필 생성에 성공했습니다', 'ok', 'success')}>
       Button
     </Button>
     <Navigation />
