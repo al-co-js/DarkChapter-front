@@ -24,6 +24,7 @@ const TextBox = ({
         y: 23,
         color: '#777777',
       });
+      setMsg('');
     } else {
       const result = rule(ref.value);
       if (result.success) {
