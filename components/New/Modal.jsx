@@ -12,6 +12,7 @@ const Modal = () => {
   const [state, setState] = useState('none');
   const [type, setType] = useState(<></>);
   const [icon, setIcon] = useState(<></>);
+  let callback;
 
   const closeModal = () => {
     back.animate(
@@ -50,14 +51,20 @@ const Modal = () => {
   };
 
   const ok = () => {
+    if (callback instanceof Function) {
+      callback('ok');
+    }
     closeModal();
   };
 
   const cancel = () => {
+    if (callback instanceof Function) {
+      callback('cancel');
+    }
     closeModal();
   };
 
-  showModal = (_content, _type, _icon) => {
+  showModal = (_content, _type, _icon, _callback) => {
     if (_type && _type !== '') {
       if (_type === 'ok') {
         setType(
@@ -80,6 +87,7 @@ const Modal = () => {
         );
       }
     }
+    callback = _callback;
     setContent(_content);
     if (_icon && _icon !== '') {
       if (_icon === 'success') {
@@ -123,10 +131,17 @@ const Modal = () => {
             </svg>
             <svg className="cross red-stroke">
               <g transform="matrix(0.79961,8.65821e-32,8.39584e-32,0.79961,-502.652,-204.518)">
-                <path className="first-line" d="M634.087,300.805L673.361,261.53" fill="none" />
+                <path
+                  className="first-line"
+                  d="M634.087,300.805L673.361,261.53"
+                  fill="none"
+                />
               </g>
               <g transform="matrix(-1.28587e-16,-0.79961,0.79961,-1.28587e-16,-204.752,543.031)">
-                <path className="second-line" d="M634.087,300.805L673.361,261.53" />
+                <path
+                  className="second-line"
+                  d="M634.087,300.805L673.361,261.53"
+                />
               </g>
             </svg>
           </div>,
@@ -148,7 +163,11 @@ const Modal = () => {
             <svg className="alert-sign yellow-stroke">
               <g transform="matrix(1,0,0,1,-615.516,-257.346)">
                 <g transform="matrix(0.56541,-0.56541,0.56541,0.56541,93.7153,495.69)">
-                  <path className="line" d="M634.087,300.805L673.361,261.53" fill="none" />
+                  <path
+                    className="line"
+                    d="M634.087,300.805L673.361,261.53"
+                    fill="none"
+                  />
                 </g>
                 <g transform="matrix(2.27612,-2.46519e-32,0,2.27612,-792.339,-404.147)">
                   <circle className="dot" cx="621.52" cy="316.126" r="1.318" />
@@ -207,7 +226,10 @@ const Modal = () => {
           setBack(dis);
         }}
         onMouseMove={({ clientX: x, clientY: y }) => {
-          setSpring({ x: (x - window.innerWidth / 2) / 10, y: (y - window.innerWidth / 2) / 10 });
+          setSpring({
+            x: (x - window.innerWidth / 2) / 10,
+            y: (y - window.innerWidth / 2) / 10,
+          });
         }}
       >
         <animated.div
@@ -240,6 +262,8 @@ const Modal = () => {
             left: 50%;
             bottom: 90px;
             font-size: 26px;
+            width: 80%;
+            text-align: center;
             transform: translate(-50%);
           }
         `}
@@ -387,7 +411,8 @@ const Modal = () => {
             left: 68px;
             width: 15px;
             height: 70px;
-            animation: 0.5s alert-sign-bounce cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: 0.5s alert-sign-bounce
+              cubic-bezier(0.175, 0.885, 0.32, 1.275);
           }
 
           .alert-sign .dot {
@@ -410,7 +435,7 @@ const Modal = () => {
               transform: scale(1);
             }
           }
-          
+
           .ok {
             position: absolute;
             right: 20px;
