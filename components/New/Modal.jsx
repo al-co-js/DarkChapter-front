@@ -202,15 +202,10 @@ const Modal = () => {
   };
 
   const [spring, setSpring] = useSpring(() => ({
-    xy: [0, 0],
+    x: 0,
+    y: 0,
     config: { mass: 10, tension: 400, friction: 60 },
   }));
-
-  const calc = (x, y) => [x - window.innerWidth / 2, y - window.innerHeight / 2];
-
-  const trans = (x, y) => `
-    translate3d(${x / 10}px, ${y / 10}px, 0)
-  `;
 
   return (
     <>
@@ -219,7 +214,7 @@ const Modal = () => {
           setBack(dis);
         }}
         onMouseMove={({ clientX: x, clientY: y }) => {
-          setSpring({ xy: calc(x, y) });
+          setSpring({ x: (x - window.innerWidth / 2) / 10, y: (y - window.innerWidth / 2) / 10 });
         }}
       >
         <animated.div
@@ -227,9 +222,7 @@ const Modal = () => {
             setModal(dis);
           }}
           className="modal"
-          style={{
-            transform: spring.xy.interpolate(trans),
-          }}
+          style={spring}
         >
           {iconType()}
           <span>{content}</span>
