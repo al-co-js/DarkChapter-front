@@ -1,7 +1,6 @@
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import { animated, useSpring } from 'react-spring';
-import { useDrag } from 'react-use-gesture';
 
 const Navigation = () => {
   const [gr, setGr] = useSpring(() => ({
@@ -18,48 +17,28 @@ const Navigation = () => {
   const [open, setOpen] = useState(false);
   const [token, setToken] = useState();
 
-  const grab = useDrag(({ down, movement: [mx, my] }) => {
-    let buf = my;
-    if (my <= 0) {
-      buf = my + 80;
-    }
-    if (!open) {
+  const grab = () => {
+    if (open) {
+      setOpen(false);
       setGr({
-        x: down && buf < 250 ? mx / 4 : 0,
-        y: down && buf < 250 ? buf : 0,
-        width: down && buf < 250 ? buf * 6 : 400,
-        height: down && buf < 250 ? buf * 1.5 : 300,
+        x: 0,
+        y: 0,
+        width: 400,
+        height: 300,
       });
-      if (my >= 250) {
-        setOpen(true);
-        setGr({
-          x: 0,
-          y: 150,
-          width: 1300,
-          height: 425,
-        });
-      }
+      setLe({
+        x: -260,
+      });
     } else {
+      setOpen(true);
       setGr({
-        x: down && buf < 250 && buf >= 80 ? mx / 4 : 0,
-        y: down && buf < 250 && buf >= 80 ? buf : 150,
+        x: 0,
+        y: 150,
         width: 1300,
         height: 425,
       });
-      if (buf < 80) {
-        setOpen(false);
-        setGr({
-          x: 0,
-          y: 0,
-          width: 400,
-          height: 300,
-        });
-        setLe({
-          x: -260,
-        });
-      }
     }
-  });
+  };
 
   const hover = (index) => {
     const items = document.getElementsByClassName('naviItem');
@@ -503,8 +482,8 @@ const Navigation = () => {
           <div
             className="grabWrapper"
             role="button"
-            onMouseDown={grab().onMouseDown}
-            onTouchMove={grab().onTouchMove}
+            onClick={grab}
+            onKeyPress={grab}
             tabIndex={0}
           >
             <div className="indiText">{open ? 'UP' : 'DOWN'}</div>
