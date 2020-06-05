@@ -26,7 +26,7 @@ const Modal = () => {
       ],
       {
         easing: 'ease',
-        duration: 500,
+        duration: 400,
         fill: 'both',
       },
     );
@@ -216,7 +216,7 @@ const Modal = () => {
   const [spring, setSpring] = useSpring(() => ({
     x: 0,
     y: 0,
-    config: { mass: 5, tension: 350, friction: 40 },
+    config: { mass: 5, tension: 500, friction: 80 },
   }));
 
   return (
@@ -227,8 +227,8 @@ const Modal = () => {
         }}
         onMouseMove={({ clientX: x, clientY: y }) => {
           setSpring({
-            x: (x - window.innerWidth / 2) / 20,
-            y: (y - window.innerWidth / 2) / 20,
+            x: (x - window.innerWidth / 2) / 65,
+            y: (y - window.innerWidth / 2) / 65,
           });
         }}
       >

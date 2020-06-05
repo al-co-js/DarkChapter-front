@@ -486,7 +486,6 @@ const Navigation = () => {
             onKeyPress={grab}
             tabIndex={0}
           >
-            <div className="indiText">{open ? 'UP' : 'DOWN'}</div>
             <div className={open && 'arrow'}>
               <div className="chevron" />
               <div className="chevron" />
@@ -575,15 +574,6 @@ const Navigation = () => {
             &:focus {
               outline: 0;
             }
-          }
-
-          .indiText {
-            position: absolute;
-            text-align: center;
-            bottom: 70px;
-            width: 100%;
-            user-select: none;
-            pointer-events: none;
           }
 
           .chevron {
