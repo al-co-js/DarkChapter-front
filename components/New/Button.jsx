@@ -96,7 +96,7 @@ Button.defaultProps = {
   className: '',
   id: '',
   children: null,
-  onClick: () => {},
+  onClick: () => { },
   color: 'blue',
 };
 
