@@ -1,54 +1,34 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Button from '../components/Button';
 import { hideLoading, showLoading } from '../components/Loading';
-import { showModal } from '../components/Modal';
-import Navigation from '../components/Navigation';
-import TextBox from '../components/TextBox';
+import Button from '../components/New/Button';
+import { showModal } from '../components/New/Modal';
+import TextBox from '../components/New/TextBox';
 import Tile from '../components/Tile';
 
 const login = () => {
   useEffect(() => {
     Cookies.remove('token');
-
-    const page = [
-      {
-        name: 'Main',
-        link: '',
-      },
-      {
-        name: 'Join',
-        link: 'join',
-      },
-      {
-        name: 'Info',
-        link: 'info',
-      },
-    ];
-
-    const links = document.getElementsByClassName('link');
-    for (let i = 0; i < 3; i += 1) {
-      links[i].href = `/${page[i].link}`;
-      links[i].textContent = page[i].name;
-    }
   });
 
+  const [id, setId] = useState();
+  const [password, setPassword] = useState();
+
   const Login = async () => {
-    const id = document.getElementById('id').value;
-    const password = document.getElementById('password').value;
-    if (!(id && password)) {
-      showModal('오류', '입력칸을 모두 채워주세요');
+    if (!(id.value && password.value)) {
+      showModal('입력칸을 모두 채워주세요', 'ok', 'info');
       return;
     }
     try {
       showLoading();
-      const token = await axios.post('http://darkchapter-back.herokuapp.com/auth/login', { id, password });
+      const token = await axios.post('http://darkchapter-back.herokuapp.com/auth/login',
+        { id: id.value, password: password.value });
       if (!token) {
         hideLoading();
-        showModal('오류', '알 수 없는 에러가 발생했습니다');
+        showModal('알 수 없는 오류가 발생했습니다', 'ok', 'error');
         return;
       }
 
@@ -58,7 +38,7 @@ const login = () => {
     } catch (err) {
       hideLoading();
       if (err.message === 'Network Error') {
-        showModal('오류', '서버와 연결에 실패했습니다');
+        showModal('서버와 연결에 실패했습니다', 'ok', 'error');
         return;
       }
       let msg;
@@ -79,15 +59,19 @@ const login = () => {
           msg = '알 수 없는 에러가 발생했습니다';
           break;
       }
-      showModal('오류', msg);
+      showModal(msg, 'ok', 'error');
     }
   };
 
   return (
     <>
-      <Navigation />
       <Tile className="loginTile">
-        <TextBox className="textBox" id="id" placeholder="ID" />
+        <TextBox
+          className="textBox"
+          id="id"
+          placeholder="ID"
+          setText={setId}
+        />
         <TextBox
           className="textBox"
           id="password"
@@ -98,8 +82,9 @@ const login = () => {
               Login();
             }
           }}
+          setText={setPassword}
         />
-        <Button id="login" onClick={Login}>Login</Button>
+        <Button id="loginButton" onClick={Login}>Login</Button>
       </Tile>
 
       <style jsx global>
@@ -117,7 +102,7 @@ const login = () => {
           .textBox {
             position: relative;
             left: 50%;
-            transform: translate(-50%);
+            transform: translate(-25%);
           }
 
           #id {
@@ -128,7 +113,7 @@ const login = () => {
             top: 200px;
           }
 
-          #login {
+          #loginButton {
             position: relative;
             left: 50%;
             transform: translate(-50%);

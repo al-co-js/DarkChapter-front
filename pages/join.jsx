@@ -1,39 +1,20 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Button from '../components/Button';
 import { hideLoading, showLoading } from '../components/Loading';
-import { showModal } from '../components/Modal';
-import Navigation from '../components/Navigation';
-import TextBox from '../components/TextBox';
+import Button from '../components/New/Button';
+import { showModal } from '../components/New/Modal';
+import TextBox from '../components/New/TextBox';
 import Tile from '../components/Tile';
 
 const join = () => {
   useEffect(() => {
     Cookies.remove('token');
-    const page = [
-      {
-        name: 'Login',
-        link: 'login',
-      },
-      {
-        name: 'Main',
-        link: '',
-      },
-      {
-        name: 'Info',
-        link: 'info',
-      },
-    ];
-
-    const links = document.getElementsByClassName('link');
-    for (let i = 0; i < 3; i += 1) {
-      links[i].href = `/${page[i].link}`;
-      links[i].textContent = page[i].name;
-    }
   });
+
+  const [pass, setPass] = useState('');
 
   const Join = async () => {
     const name = document.getElementById('name').value;
@@ -88,14 +69,73 @@ const join = () => {
 
   return (
     <>
-      <Navigation />
       <Tile className="joinTile">
-        <TextBox className="textBox" id="name" placeholder="Name" />
-        <TextBox className="textBox" id="schoolId" placeholder="School ID Ex) 2301" />
-        <TextBox className="textBox" id="id" placeholder="ID" />
-        <TextBox className="textBox" id="password" placeholder="Password" type="password" />
-        <TextBox className="textBox" id="verify" placeholder="Verify Password" type="password" />
-        <Button id="join" onClick={Join}>
+        <TextBox
+          rule={(text) => {
+            if (text.indexOf(' ') >= 0) {
+              return { success: false, message: '이름에 공백은 포함될 수 없습니다' };
+            }
+            return { success: true };
+          }}
+          className="textBox"
+          id="name"
+          placeholder="Name"
+        />
+        <TextBox
+          rule={(text) => {
+            if (Number(text[0]) === 0
+            || Number(text[0]) >= 4
+            || Number(text[0]) === 0
+            || Number(text[1]) >= 7
+            || Number.isNaN(Number(text))
+            || text.length !== 4
+            ) {
+              return { success: false, message: '학번이 잘못되었습니다. 예) 2301' };
+            }
+            return { success: true };
+          }}
+          className="textBox"
+          id="schoolId"
+          placeholder="School ID"
+        />
+        <TextBox
+          rule={(text) => {
+            if (text.indexOf(' ') >= 0) {
+              return { success: false, message: '아이디에 공백은 포함될 수 없습니다' };
+            }
+            return { success: true };
+          }}
+          className="textBox"
+          id="id"
+          placeholder="ID"
+        />
+        <TextBox
+          rule={(text) => {
+            const regex = /^[A-Za-z0-9!@#$%^&+=]{6,15}$/;
+            if (!regex.test(text)) {
+              return { success: false, message: '영어와 숫자, 특수문자만 사용 및 6글자 이상 15글자 이하' };
+            }
+            setPass(text);
+            return { success: true };
+          }}
+          className="textBox"
+          id="password"
+          placeholder="Password"
+          type="password"
+        />
+        <TextBox
+          rule={(text) => {
+            if (text !== pass) {
+              return { success: false, message: '비밀번호가 일치하지 않습니다' };
+            }
+            return { success: true };
+          }}
+          className="textBox"
+          id="verify"
+          placeholder="Verify Password"
+          type="password"
+        />
+        <Button id="joinButton" onClick={Join}>
           Join
         </Button>
       </Tile>
@@ -115,34 +155,16 @@ const join = () => {
           .textBox {
             position: relative;
             left: 50%;
-            transform: translate(-50%);
+            transform: translate(-25%);
+            top: 90px;
+            margin-top: 30px;
           }
 
-          #name {
-            top: 120px;
-          }
-
-          #schoolId {
-            top: 170px;
-          }
-
-          #id {
-            top: 220px;
-          }
-
-          #password {
-            top: 270px;
-          }
-
-          #verify {
-            top: 320px;
-          }
-
-          #join {
+          #joinButton {
             position: relative;
             left: 50%;
             transform: translate(-50%);
-            top: 410px;
+            top: 180px;
           }
         `}
       </style>
