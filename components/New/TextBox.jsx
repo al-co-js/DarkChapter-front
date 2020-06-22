@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 const TextBox = ({
-  type, placeholder, className, id, onKeyPress, rule,
+  type, placeholder, className, id, onKeyPress, rule, setText,
 }) => {
   const [state, setState] = useState({
     y: 23,
@@ -34,7 +34,7 @@ const TextBox = ({
           color: '#1ba0f2',
         });
       } else {
-        setMsg(` - ${result.msg}`);
+        setMsg(` - ${result.message}`);
         setState({
           y: 0,
           color: '#f26666',
@@ -53,6 +53,7 @@ const TextBox = ({
         <input
           ref={(dis) => {
             setRef(dis);
+            setText(dis);
           }}
           onFocus={() => focus()}
           onBlur={() => blur()}
@@ -103,6 +104,7 @@ TextBox.defaultProps = {
   id: '',
   onKeyPress: () => {},
   rule: () => ({ success: true }),
+  setText: () => {},
 };
 
 TextBox.propTypes = {
@@ -112,6 +114,7 @@ TextBox.propTypes = {
   id: PropTypes.string,
   onKeyPress: PropTypes.func,
   rule: PropTypes.func,
+  setText: PropTypes.func,
 };
 
 export default TextBox;
