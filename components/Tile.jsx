@@ -14,7 +14,7 @@ const Tile = (props) => {
         {`
           div {
             border-radius: 34px;
-            box-shadow: -2px -2px 3px #60606070, 3px 3px 6px #00000070;
+            box-shadow: 0 3px 6px #00000044;
             margin-top: 50px;
             margin-bottom: 50px;
           }
