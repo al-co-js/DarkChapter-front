@@ -56,6 +56,7 @@ const Button = ({
             background-position: 0 -120%;
             overflow: hidden;
             user-select: none;
+            cursor: pointer;
 
             &:hover {
               color: #ffffff;

@@ -583,6 +583,7 @@ const Navigation = () => {
             bottom: 0;
             align-items: center;
             text-align: center;
+            cursor: pointer;
 
             &:focus {
               outline: 0;
