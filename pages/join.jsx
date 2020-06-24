@@ -14,29 +14,41 @@ const join = () => {
     Cookies.remove('token');
   });
 
-  const [pass, setPass] = useState('');
+  const [name, setName] = useState();
+  const [schoolId, setSchoolId] = useState();
+  const [id, setId] = useState();
+  const [password, setPassword] = useState();
+  const [verify, setVerify] = useState();
 
   const Join = async () => {
-    const name = document.getElementById('name').value;
-    const schoolId = document.getElementById('schoolId').value;
-    const id = document.getElementById('id').value;
-    const password = document.getElementById('password').value;
-    const verify = document.getElementById('verify').value;
-    if (!(name && schoolId && id && password && verify)) {
+    if (!(name.value && schoolId.value && id.value && password.value && verify.value)) {
       showModal('오류', '입력칸을 모두 채워주세요');
       return;
     }
-    if (password !== verify) {
+    if (password.value !== verify.value) {
       showModal('오류', '비밀번호가 일치하지 않습니다');
+      return;
+    }
+    if (name.value.indexOf(' ') >= 0) {
+      showModal('오류', '이름에 공백은 포함될 수 없습니다');
+      return;
+    }
+    if (Number(schoolId.value[0]) === 0
+            || Number(schoolId.value[0]) >= 4
+            || Number(schoolId.value[0]) === 0
+            || Number(schoolId.value[1]) >= 7
+            || Number.isNaN(Number(schoolId.value))
+            || schoolId.value.length !== 4) {
+      showModal('오류', '학번이 잘못되었습니다. 예) 2301');
       return;
     }
     try {
       showLoading();
       await axios.post('http://darkchapter-back.herokuapp.com/auth/join', {
-        name,
-        schoolId,
-        id,
-        password,
+        name: name.value,
+        schoolId: schoolId.value,
+        id: id.value,
+        password: password.value,
       });
       hideLoading();
       showModal('성공', '성공적으로 아이디를 생성했습니다', () => {
@@ -81,6 +93,7 @@ const join = () => {
           className="textBox"
           id="name"
           placeholder="Name"
+          setText={setName}
         />
         <TextBox
           rule={(text) => {
@@ -98,6 +111,7 @@ const join = () => {
           className="textBox"
           id="schoolId"
           placeholder="School ID"
+          setText={setSchoolId}
         />
         <TextBox
           rule={(text) => {
@@ -109,6 +123,7 @@ const join = () => {
           className="textBox"
           id="id"
           placeholder="ID"
+          setText={setId}
         />
         <TextBox
           rule={(text) => {
@@ -116,17 +131,17 @@ const join = () => {
             if (!regex.test(text)) {
               return { success: false, message: '영어와 숫자, 특수문자만 사용 및 6글자 이상 15글자 이하' };
             }
-            setPass(text);
             return { success: true };
           }}
           className="textBox"
           id="password"
           placeholder="Password"
           type="password"
+          setText={setPassword}
         />
         <TextBox
           rule={(text) => {
-            if (text !== pass) {
+            if (text !== password.value) {
               return { success: false, message: '비밀번호가 일치하지 않습니다' };
             }
             return { success: true };
@@ -135,6 +150,7 @@ const join = () => {
           id="verify"
           placeholder="Verify Password"
           type="password"
+          setText={setVerify}
         />
         <Button id="joinButton" onClick={Join}>
           Join
