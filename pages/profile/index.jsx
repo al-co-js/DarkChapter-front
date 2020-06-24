@@ -16,6 +16,7 @@ const profile = () => {
         showModal('로그인이 필요한 작업입니다', 'ok', 'info', () => {
           Router.push('/login');
         });
+        return;
       }
 
       try {
