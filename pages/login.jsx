@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { hideLoading, showLoading } from '../components/Loading';
+import { hideLoading, Loading, showLoading } from '../components/Loading';
 import Button from '../components/New/Button';
 import { showModal } from '../components/New/Modal';
 import TextBox from '../components/New/TextBox';
@@ -65,6 +65,7 @@ const login = () => {
 
   return (
     <>
+    <Loading />
       <Tile className="loginTile">
         <TextBox
           className="textBox"

@@ -4,9 +4,8 @@ import Router, { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import Button from '../../components/Button';
-import { hideLoading, showLoading } from '../../components/Loading';
+import { hideLoading, Loading, showLoading } from '../../components/Loading';
 import { showModal } from '../../components/Modal';
-import Navigation from '../../components/Navigation';
 
 const detail = () => {
   const router = useRouter();
@@ -140,7 +139,7 @@ const detail = () => {
 
   return (
     <>
-      <Navigation />
+      <Loading />
       <div className="modal">
         <label htmlFor="file">
           <img className="image" src={image} alt="profileImage" />
