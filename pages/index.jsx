@@ -15,19 +15,17 @@ const test = () => {
 
   return (
     <>
-      <span className="guid newbie">
-        이 사이트가 처음이신가요?
+      <span className="wave" id="text">
+        <span id="orangeText">D</span>
+        ark
+        {' '}
+        <span id="blueText">C</span>
+        hapter
         <br />
-        회원가입을 해보세요!
+        <span id="subTitle">
+          흑역사를 추억하다
+        </span>
       </span>
-      <Button
-        className="button newbie"
-        onClick={() => {
-          Router.push('/join');
-        }}
-      >
-        Join
-      </Button>
       <span className="guid pro">
         이미 회원이신가요?
         <br />
@@ -54,17 +52,19 @@ const test = () => {
       >
         Info
       </Button>
-      <span className="wave" id="text">
-        흑역사를 추억하다
+      <span className="guid newbie">
+        이 사이트가 처음이신가요?
         <br />
-        <span id="title">
-          <span id="orangeText">D</span>
-          ark
-          {' '}
-          <span id="blueText">C</span>
-          hapter
-        </span>
+        회원가입을 해보세요!
       </span>
+      <Button
+        className="button newbie"
+        onClick={() => {
+          Router.push('/join');
+        }}
+      >
+        Join
+      </Button>
       <img
         className="wave"
         id="blue"
@@ -80,6 +80,14 @@ const test = () => {
 
       <style jsx>
         {`
+          @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+          #subTitle {
+            font-family: "Noto Sans KR";
+            font-weight: lighter;
+            font-size: 68px;
+          }
+        
           .guid {
             position: absolute;
             font-size: 30px;
