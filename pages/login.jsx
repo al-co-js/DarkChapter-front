@@ -65,7 +65,7 @@ const login = () => {
 
   return (
     <>
-    <Loading />
+      <Loading />
       <Tile className="loginTile">
         <TextBox
           className="textBox"
