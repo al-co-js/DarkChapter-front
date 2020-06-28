@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import Button from '../components/New/Button';
 
-const test = () => {
+const main = () => {
   const [token, setToken] = useState();
   useEffect(() => {
     setToken(Cookies.get('token'));
@@ -178,4 +178,4 @@ const test = () => {
   );
 };
 
-export default test;
+export default main;
