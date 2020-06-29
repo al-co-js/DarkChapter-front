@@ -1,20 +1,31 @@
+import Router from 'next/router';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 const Profile = ({
   target, uploader, image, id,
-}) => (
-  <>
-    <div
-      aria-hidden
-      className="profileContainer"
-    >
-      <img className="image" src={image} alt="profileImage" />
-      <div className="target">{target}</div>
-      <div className="uploader">{`작성자 : ${uploader}`}</div>
+}) => {
+  const openDetail = () => {
+    Router.push({
+      pathname: '/profile',
+      query: { id },
+    });
+  };
 
-      <style jsx>
-        {`
+  return (
+    <>
+      <div
+        aria-hidden
+        className="profileContainer"
+        onClick={openDetail}
+        onKeyPress={openDetail}
+      >
+        <img className="image" src={image} alt="profileImage" />
+        <div className="target">{target}</div>
+        <div className="uploader">{`작성자 : ${uploader}`}</div>
+
+        <style jsx>
+          {`
           .profileContainer {
             background-color: #ffffff;
             border-radius: 46px;
@@ -57,10 +68,11 @@ const Profile = ({
             user-select: none;
           }
         `}
-      </style>
-    </div>
-  </>
-);
+        </style>
+      </div>
+    </>
+  );
+};
 
 Profile.propTypes = {
   target: PropTypes.string.isRequired,

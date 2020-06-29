@@ -1,14 +1,18 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 
 import { hideLoading, Loading, showLoading } from '../../components/Loading';
+import { Detail, showDetail } from '../../components/New/Detail';
 import { showModal } from '../../components/New/Modal';
 import Profile from '../../components/New/Profile';
 
 const profile = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
   useEffect(() => {
     const delegate = async () => {
       const token = Cookies.get('token');
@@ -57,7 +61,7 @@ const profile = () => {
             target={data.target}
             uploader={data.uploader}
             image={data.image}
-            _id={data._id}
+            id={data._id}
           />
         );
         const cont = document.createElement('li');
@@ -104,9 +108,16 @@ const profile = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (id) {
+      showDetail(id);
+    }
+  });
+
   return (
     <>
       <Loading />
+      <Detail />
       <ul id="profileList">
         <li>
           <a id="registryLink" href="/profiles/registry">
