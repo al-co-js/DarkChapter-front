@@ -55,8 +55,8 @@ const TextBox = ({
             setRef(dis);
             setText(dis);
           }}
-          onFocus={() => focus()}
-          onBlur={() => blur()}
+          onFocus={focus}
+          onBlur={blur}
           type={type}
           onKeyPress={onKeyPress}
         />
