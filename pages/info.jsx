@@ -37,9 +37,6 @@ const info = () => (
             top: 150px;
             left: 90px;
             width: 80%;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
           }
 
@@ -50,9 +47,6 @@ const info = () => (
             left: 130px;
             margin-top: 30px;
             width: 80%;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
           }
 

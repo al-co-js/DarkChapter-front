@@ -41,9 +41,6 @@ const Navigation = () => (
           color: #d6d6d6;
           font-size: 23px;
           transition: all ease-in-out 0.3s;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
           user-select: none;
 
           &:hover {

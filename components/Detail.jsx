@@ -16,9 +16,6 @@ const Detail = (props) => {
             width: 30%;
             margin-left: 80px;
             margin-top: 50px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
             pointer-events: none;
           }

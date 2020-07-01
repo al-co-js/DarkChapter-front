@@ -18,9 +18,6 @@ const notFound = () => (
           color: #2b2b2b;
           text-shadow: 0px 0px 0px #60606070, 0px 0px 0px #00000070;
           animation: Wildly 2s ease-in-out infinite;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
           user-select: none;
         }
 
@@ -33,9 +30,6 @@ const notFound = () => (
           color: #2b2b2b;
           text-shadow: -2px -2px 3px #60606070, 2px 2px 3px #00000070;
           text-decoration: none;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
           user-select: none;
         }
 

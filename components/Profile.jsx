@@ -42,9 +42,6 @@ const Profile = (props) => {
             width: 195px;
             height: 195px;
             margin-top: 35px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
             pointer-events: none;
           }
@@ -52,18 +49,12 @@ const Profile = (props) => {
           .target {
             font-size: 35px;
             margin-top: 15px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
           }
 
           .uploader {
             font-size: 15px;
             margin-top: 10px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
             user-select: none;
           }
         `}
