@@ -138,12 +138,12 @@ const main = () => (
         }
 
         .newbie {
-          left: 75%;
+          left: 71%;
           animation: guid 0.5s ease-out 3.6s both;
         }
 
         .pro {
-          left: 25%;
+          left: 29%;
           animation: guid 0.5s ease-out 1s both;
         }
 
