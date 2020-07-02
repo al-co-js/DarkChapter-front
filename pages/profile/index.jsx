@@ -111,7 +111,7 @@ const profile = () => {
     if (id) {
       showDetail(id);
     }
-  });
+  }, [id]);
 
   return (
     <>
