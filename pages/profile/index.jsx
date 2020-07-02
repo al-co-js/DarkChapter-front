@@ -40,7 +40,7 @@ const profile = () => {
       }
     };
     delegate();
-  });
+  }, []);
   let page = 1;
   let last = true;
 

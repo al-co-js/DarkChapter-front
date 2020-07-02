@@ -6,7 +6,7 @@ const logout = () => {
   useEffect(() => {
     Cookies.remove('token');
     Router.push('/');
-  });
+  }, []);
 
   return <></>;
 };

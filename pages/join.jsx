@@ -12,7 +12,7 @@ import Tile from '../components/Tile';
 const join = () => {
   useEffect(() => {
     Cookies.remove('token');
-  });
+  }, []);
 
   const [name, setName] = useState();
   const [schoolId, setSchoolId] = useState();

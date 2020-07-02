@@ -12,7 +12,7 @@ import Tile from '../components/Tile';
 const login = () => {
   useEffect(() => {
     Cookies.remove('token');
-  });
+  }, []);
 
   const [id, setId] = useState();
   const [password, setPassword] = useState();
@@ -34,7 +34,7 @@ const login = () => {
 
       hideLoading();
       Cookies.set('token', token.data, { maxAge: '25200' });
-      Router.push('/');
+      Router.push('/profile');
     } catch (err) {
       hideLoading();
       if (err.message === 'Network Error') {
