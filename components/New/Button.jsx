@@ -28,9 +28,7 @@ const Button = ({
           child.style.height = `${buf}px`;
           child.style.left = `${posX - width * 0.514}px`;
           child.style.top = `${posY - height * 1.79}px`;
-          child.addEventListener('animationend', () => {
-            child.remove();
-          });
+          child.addEventListener('animationend', child.remove);
           ref.appendChild(child);
           setTimeout(onClick, 300);
         }}
