@@ -22,16 +22,15 @@ const join = () => {
 
   const Join = async () => {
     if (!(name.value && schoolId.value && id.value && password.value && verify.value)) {
-      showModal('오류', '입력칸을 모두 채워주세요');
+      showModal('입력칸을 모두 채워주세요', 'ok', 'error');
       return;
     }
     if (password.value !== verify.value) {
-      showModal('오류', '비밀번호가 일치하지 않습니다');
+      showModal('비밀번호가 일치하지 않습니다', 'ok', 'error');
       return;
     }
     if (name.value.indexOf(' ') >= 0) {
-      showModal('오류', '이름에 공백은 포함될 수 없습니다');
-      return;
+      showModal('이름에 공백은 포함될 수 없습니다', 'ok', 'error');
     }
     if (Number(schoolId.value[0]) === 0
             || Number(schoolId.value[0]) >= 4
@@ -39,7 +38,7 @@ const join = () => {
             || Number(schoolId.value[1]) >= 7
             || Number.isNaN(Number(schoolId.value))
             || schoolId.value.length !== 4) {
-      showModal('오류', '학번이 잘못되었습니다. 예) 2301');
+      showModal('학번이 잘못되었습니다. 예) 2301', 'ok', 'error');
       return;
     }
     try {
@@ -51,13 +50,13 @@ const join = () => {
         password: password.value,
       });
       hideLoading();
-      showModal('성공', '성공적으로 아이디를 생성했습니다', () => {
+      showModal('성공적으로 아이디를 생성했습니다', 'ok', 'success', () => {
         Router.push('/login');
       });
     } catch (err) {
       hideLoading();
       if (err.message === 'Network Error') {
-        showModal('오류', '서버와 연결에 실패했습니다');
+        showModal('서버와 연결에 실패했습니다', 'ok', 'error');
         return;
       }
       let msg;
@@ -75,7 +74,7 @@ const join = () => {
           msg = '알 수 없는 에러가 발생했습니다';
           break;
       }
-      showModal('오류', msg);
+      showModal(msg, 'ok', 'error');
     }
   };
 
