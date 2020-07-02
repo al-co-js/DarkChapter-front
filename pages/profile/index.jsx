@@ -13,34 +13,6 @@ const profile = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  useEffect(() => {
-    const delegate = async () => {
-      const token = Cookies.get('token');
-      if (!token) {
-        showModal('로그인이 필요한 작업입니다', 'ok', 'info', () => {
-          Router.push('/login');
-        });
-        return;
-      }
-
-      try {
-        const verified = await axios.post('http://darkchapter-back.herokuapp.com/auth/verify', {
-          token,
-          need: true,
-        });
-        if (!verified) {
-          showModal('로그인이 필요한 작업입니다', 'ok', 'info', () => {
-            Router.push('/login');
-          });
-        }
-      } catch (err) {
-        showModal('로그인이 필요한 작업입니다', 'ok', 'info', () => {
-          Router.push('/login');
-        });
-      }
-    };
-    delegate();
-  }, []);
   let page = 1;
   let last = true;
 
@@ -89,23 +61,50 @@ const profile = () => {
   };
 
   useEffect(() => {
-    addItem();
-    window.addEventListener('scroll', async () => {
-      if (last) {
-        if (
-          window.scrollY + document.documentElement.clientHeight
-          === document.documentElement.scrollHeight
-        ) {
-          page += 1;
-          try {
-            await addItem();
-          } catch (err) {
-            hideLoading();
-            last = false;
-          }
-        }
+    const delegate = async () => {
+      const token = Cookies.get('token');
+      if (!token) {
+        showModal('로그인이 필요한 작업입니다', 'ok', 'info', () => {
+          Router.push('/login');
+        });
+        return;
       }
-    });
+
+      try {
+        const verified = await axios.post('http://darkchapter-back.herokuapp.com/auth/verify', {
+          token,
+          need: true,
+        });
+        if (!verified) {
+          showModal('로그인이 필요한 작업입니다', 'ok', 'info', () => {
+            Router.push('/login');
+          });
+          return;
+        }
+        addItem();
+        window.addEventListener('scroll', async () => {
+          if (last) {
+            if (
+              window.scrollY + document.documentElement.clientHeight
+          === document.documentElement.scrollHeight
+            ) {
+              page += 1;
+              try {
+                await addItem();
+              } catch (err) {
+                hideLoading();
+                last = false;
+              }
+            }
+          }
+        });
+      } catch (err) {
+        showModal('로그인이 필요한 작업입니다', 'ok', 'info', () => {
+          Router.push('/login');
+        });
+      }
+    };
+    delegate();
   }, []);
 
   useEffect(() => {
