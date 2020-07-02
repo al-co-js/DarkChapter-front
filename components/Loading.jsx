@@ -28,20 +28,20 @@ const Loading = () => {
             top: 0;
             width: 100%;
             height: 100%;
-            opacity: 0;
-            background-color: #000000;
+            background-color: #00000000;
             z-index: 99998;
             margin: 0;
             padding: 0;
+            backdrop-filter: blur(6px);  
             animation: backgroundAnimation 0.3s ease-in-out both;
           }
 
           @keyframes backgroundAnimation {
             0% {
-              opacity: 0%;
+              background-color: #00000000;
             }
             100% {
-              opacity: 40%;
+              background-color: #000000ce;
             }
           }
 
