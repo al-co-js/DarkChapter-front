@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import React, { useState } from 'react';
 import { animated, useSpring } from 'react-spring';
 
@@ -48,6 +49,7 @@ const Detail = () => {
 
   const close = () => {
     closeDetail();
+    Router.push('/profile');
   };
 
   showDetail = () => {
