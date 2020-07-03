@@ -26,7 +26,7 @@ const DetailList = () => {
       try {
         showLoading();
         const details = await axios.post(
-          'http://darkchapter-back.herokuapp.com/profile/detail/get',
+          'https://darkchapter-back.herokuapp.com/profile/detail/get',
           { id: _id },
         );
         if (!details) {

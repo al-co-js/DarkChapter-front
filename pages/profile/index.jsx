@@ -20,7 +20,7 @@ const profile = () => {
     try {
       showLoading();
       const profiles = await axios.get(
-        `http://darkchapter-back.herokuapp.com/profile/get?page=${page}&limit=${10}`,
+        `https://darkchapter-back.herokuapp.com/profile/get?page=${page}&limit=${10}`,
       );
       if (!profiles) {
         hideLoading();
@@ -71,7 +71,7 @@ const profile = () => {
       }
 
       try {
-        const verified = await axios.post('http://darkchapter-back.herokuapp.com/auth/verify', {
+        const verified = await axios.post('https://darkchapter-back.herokuapp.com/auth/verify', {
           token,
           need: true,
         });

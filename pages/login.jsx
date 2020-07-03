@@ -24,7 +24,7 @@ const login = () => {
     }
     try {
       showLoading();
-      const token = await axios.post('http://darkchapter-back.herokuapp.com/auth/login',
+      const token = await axios.post('https://darkchapter-back.herokuapp.com/auth/login',
         { id: id.value, password: password.value });
       if (!token) {
         hideLoading();
