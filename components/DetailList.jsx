@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { render } from 'react-dom';
 
 import Detail from './Detail';
-import { hideLoading, showLoading } from './Loading';
+import { closeLoading, showLoading } from './Loading';
 
 let showDetail;
 
@@ -30,7 +30,7 @@ const DetailList = () => {
           { id: _id },
         );
         if (!details) {
-          hideLoading();
+          closeLoading();
           return;
         }
         details.data.some((detail) => {
@@ -51,7 +51,7 @@ const DetailList = () => {
       } finally {
         setStatus('block');
       }
-      hideLoading();
+      closeLoading();
     };
     delegate();
   };

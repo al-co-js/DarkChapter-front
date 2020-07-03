@@ -4,7 +4,7 @@ import Router, { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 
-import { hideLoading, Loading, showLoading } from '../../components/Loading';
+import { closeLoading, Loading, showLoading } from '../../components/Loading';
 import { Detail, showDetail } from '../../components/New/Detail';
 import { showModal } from '../../components/New/Modal';
 import Profile from '../../components/New/Profile';
@@ -23,7 +23,7 @@ const profile = () => {
         `https://darkchapter-back.herokuapp.com/profile/get?page=${page}&limit=${10}`,
       );
       if (!profiles) {
-        hideLoading();
+        closeLoading();
         return;
       }
 
@@ -51,12 +51,12 @@ const profile = () => {
           render(item, conts[conts.length - 1]);
           return false;
         } catch (err) {
-          hideLoading();
+          closeLoading();
           return true;
         }
       });
     } finally {
-      hideLoading();
+      closeLoading();
     }
   };
 
@@ -92,7 +92,7 @@ const profile = () => {
               try {
                 await addItem();
               } catch (err) {
-                hideLoading();
+                closeLoading();
                 last = false;
               }
             }

@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
-import { hideLoading, Loading, showLoading } from '../components/Loading';
+import { closeLoading, Loading, showLoading } from '../components/Loading';
 import Button from '../components/New/Button';
 import { showModal } from '../components/New/Modal';
 import TextBox from '../components/New/TextBox';
@@ -27,16 +27,16 @@ const login = () => {
       const token = await axios.post('https://darkchapter-back.herokuapp.com/auth/login',
         { id: id.value, password: password.value });
       if (!token) {
-        hideLoading();
+        closeLoading();
         showModal('알 수 없는 오류가 발생했습니다', 'ok', 'error');
         return;
       }
 
-      hideLoading();
+      closeLoading();
       Cookies.set('token', token.data, { maxAge: '25200' });
       Router.push('/profile');
     } catch (err) {
-      hideLoading();
+      closeLoading();
       if (err.message === 'Network Error') {
         showModal('서버와 연결에 실패했습니다', 'ok', 'error');
         return;
