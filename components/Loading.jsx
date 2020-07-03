@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 let showLoading;
-let hideLoading;
+let closeLoading;
 
 const Loading = () => {
   const [status, setStatus] = useState('none');
@@ -10,20 +10,54 @@ const Loading = () => {
 
   showLoading = () => {
     setStatus('block');
+    back.animate(
+      [
+        {
+          backgroundColor: '#00000000',
+          backdropFilter: 'blur(1px)',
+        },
+        {
+          backgroundColor: '#000000ce',
+          backdropFilter: 'blur(6px)',
+        },
+      ],
+      {
+        easing: 'ease',
+        duration: 300,
+        fill: 'both',
+      },
+    );
+    modal.animate(
+      [
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+      ],
+      {
+        easing: 'ease',
+        duration: 300,
+        fill: 'both',
+      },
+    );
   };
 
-  hideLoading = () => {
+  closeLoading = () => {
     back.animate(
       [
         {
           backgroundColor: '#000000ce',
+          backdropFilter: 'blur(6px)',
         },
         {
           backgroundColor: '#00000000',
+          backdropFilter: 'blur(1px)',
         },
       ],
       {
-        easing: 'ease-in-out',
+        easing: 'ease',
         duration: 300,
         fill: 'both',
       },
@@ -38,14 +72,12 @@ const Loading = () => {
         },
       ],
       {
-        easing: 'ease-in-out',
+        easing: 'ease',
         duration: 300,
         fill: 'both',
       },
     );
-    setTimeout(() => {
-      setStatus('none');
-    }, 300);
+    setTimeout(() => { setStatus('none'); }, 300);
   };
 
   return (
@@ -78,17 +110,7 @@ const Loading = () => {
             z-index: 99998;
             margin: 0;
             padding: 0;
-            backdrop-filter: blur(6px);  
-            animation: backgroundAnimation 0.3s ease-in-out both;
-          }
-
-          @keyframes backgroundAnimation {
-            0% {
-              background-color: #00000000;
-            }
-            100% {
-              background-color: #000000ce;
-            }
+            backdrop-filter: blur(1px);  
           }
 
           .modalL {
@@ -101,16 +123,6 @@ const Loading = () => {
             opacity: 0;
             transform: translate(-50%, -50%);
             z-index: 99999;
-            animation: modalAnimation 0.3s ease-in-out both;
-          }
-
-          @keyframes modalAnimation {
-            0% {
-              opacity: 0%;
-            }
-            100% {
-              opacity: 100%;
-            }
           }
         `}
       </style>
@@ -118,4 +130,4 @@ const Loading = () => {
   );
 };
 
-export { Loading, showLoading, hideLoading };
+export { Loading, showLoading, closeLoading };
