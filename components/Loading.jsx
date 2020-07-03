@@ -5,19 +5,65 @@ let hideLoading;
 
 const Loading = () => {
   const [status, setStatus] = useState('none');
+  const [modal, setModal] = useState();
+  const [back, setBack] = useState();
 
   showLoading = () => {
     setStatus('block');
   };
 
   hideLoading = () => {
-    setStatus('none');
+    back.animate(
+      [
+        {
+          backgroundColor: '#000000ce',
+        },
+        {
+          backgroundColor: '#00000000',
+        },
+      ],
+      {
+        easing: 'ease-in-out',
+        duration: 300,
+        fill: 'both',
+      },
+    );
+    modal.animate(
+      [
+        {
+          opacity: 1,
+        },
+        {
+          opacity: 0,
+        },
+      ],
+      {
+        easing: 'ease-in-out',
+        duration: 300,
+        fill: 'both',
+      },
+    );
+    setTimeout(() => {
+      setStatus('none');
+    }, 300);
   };
 
   return (
     <>
-      <div className="back" />
-      <img className="modalL" src="/loading.svg" alt="loading" />
+      <div
+        className="back"
+        ref={(dis) => {
+          setBack(dis);
+        }}
+      />
+      <img
+        className="modalL"
+        ref={(dis) => {
+          setModal(dis);
+        }}
+        src="/loading.svg"
+        alt="loading"
+      />
 
       <style jsx>
         {`
