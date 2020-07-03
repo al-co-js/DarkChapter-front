@@ -26,7 +26,7 @@ const app = ({ Component, pageProps, router }) => (
 
         .page-transition-enter-active {
           opacity: 1;
-          transition: opacity 300ms;
+          transition: opacity 0.3s;
         }
 
         .page-transition-exit {
@@ -35,7 +35,7 @@ const app = ({ Component, pageProps, router }) => (
 
         .page-transition-exit-active {
           opacity: 0;
-          transition: opacity 300ms;
+          transition: opacity 0.3s;
         }
       `}
     </style>
