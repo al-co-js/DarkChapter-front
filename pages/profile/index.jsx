@@ -51,7 +51,6 @@ const profile = () => {
           render(item, conts[conts.length - 1]);
           return false;
         } catch (err) {
-          closeLoading();
           return true;
         }
       });
