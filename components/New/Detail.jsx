@@ -1,8 +1,12 @@
-import Router from 'next/router';
+import axios from 'axios';
+import Router, { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { render } from 'react-dom';
 import { animated, useSpring } from 'react-spring';
 
+import { closeLoading, showLoading } from '../Loading';
 import Button from './Button';
+import DetailItem from './DetailItem';
 
 let showDetail;
 
@@ -10,6 +14,10 @@ const Detail = () => {
   const [back, setBack] = useState(<></>);
   const [detail, setDetail] = useState(<></>);
   const [state, setState] = useState('none');
+  const [list, setList] = useState(<></>);
+  const [registry, setRegistry] = useState(() => {});
+  const router = useRouter();
+  const { id } = router.query;
 
   const closeDetail = () => {
     back.animate(
@@ -53,39 +61,101 @@ const Detail = () => {
   };
 
   showDetail = () => {
-    setState('block');
-    back.animate(
-      [
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-        },
-      ],
-      {
-        easing: 'ease',
-        duration: 400,
-        fill: 'both',
-      },
-    );
-    detail.animate(
-      [
-        {
-          opacity: 0,
-          top: '-80%',
-        },
-        {
-          opacity: 1,
-          top: '-30%',
-        },
-      ],
-      {
-        easing: 'ease',
-        duration: 400,
-        fill: 'both',
-      },
-    );
+    const delegate = async () => {
+      const buf = () => {
+        close();
+        Router.push({
+          pathname: '/profile/detail',
+          query: { id },
+        });
+      };
+      setRegistry(() => buf);
+      try {
+        showLoading();
+        const items = document.getElementsByClassName('detailItems');
+        for (let i = items.length - 1; i >= 0; i -= 1) {
+          items[i].remove();
+        }
+        const details = await axios.post(
+          'https://darkchapter-back.herokuapp.com/profile/detail/get',
+          { id },
+        );
+        if (!details) {
+          closeLoading();
+          return;
+        }
+        const plus = (
+          <img
+            aria-hidden
+            className="registry"
+            src="/plus.svg"
+            alt="registry"
+            onClick={registry}
+            onKeyPress={registry}
+          />
+        );
+        const contb = document.createElement('li');
+        contb.className = 'detailItems';
+        list.appendChild(contb);
+        const buff = document.getElementsByClassName('detailItems');
+        render(plus, buff[0]);
+        details.data.some((data) => {
+          const child = (
+            <DetailItem
+              image={data.image}
+              uploader={data.uploader}
+              content={data.content}
+            />
+          );
+          const cont = document.createElement('li');
+          cont.className = 'detailItems';
+          try {
+            list.appendChild(cont);
+            const conts = document.getElementsByClassName('detailItems');
+            render(child, conts[conts.length - 1]);
+            return false;
+          } catch (err) {
+            return true;
+          }
+        });
+      } finally {
+        closeLoading();
+        setState('block');
+        back.animate(
+          [
+            {
+              opacity: 0,
+            },
+            {
+              opacity: 1,
+            },
+          ],
+          {
+            easing: 'ease',
+            duration: 400,
+            fill: 'both',
+          },
+        );
+        detail.animate(
+          [
+            {
+              opacity: 0,
+              top: '-80%',
+            },
+            {
+              opacity: 1,
+              top: '-30%',
+            },
+          ],
+          {
+            easing: 'ease',
+            duration: 400,
+            fill: 'both',
+          },
+        );
+      }
+    };
+    delegate();
   };
 
   const [spring, setSpring] = useSpring(() => ({
@@ -114,7 +184,16 @@ const Detail = () => {
           className="detail"
           style={spring}
         >
-          <Button className="close" onClick={close}>
+          <ul
+            className="detailList"
+            ref={(dis) => {
+              setList(dis);
+            }}
+          />
+          <Button
+            className="close"
+            onClick={close}
+          >
             닫기
           </Button>
         </animated.div>
@@ -122,12 +201,23 @@ const Detail = () => {
 
       <style jsx>
         {`
+          .detailList {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 23%;
+            width: 95%;
+            height: 67%;
+            overflow-y: scroll;
+            list-style: none;
+          }
+        
           div {
             background-color: #00000066;
             width: 100%;
             height: 100%;
             position: fixed;
-            z-index: 99999;
+            z-index: 9999;
             opacity: 0;
             display: ${state};
           }
@@ -146,6 +236,11 @@ const Detail = () => {
 
       <style jsx global>
         {`
+          .registry {
+            position: relative;
+            margin-left: 100px;
+          }
+
           .close {
             position: absolute;
             right: 20px;
@@ -159,7 +254,7 @@ const Detail = () => {
             box-shadow: 0 3px 6px #00000066;
             z-index: 99999;
             width: 70%;
-            height: 100%;
+            height: 130%;
             max-width: 1500px;
             max-height: 1700px;
             top: -80%;
