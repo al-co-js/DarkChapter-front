@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import React from 'react';
 
-import Button from '../components/New/Button';
+import Button from '../components/Button';
 
 const main = () => (
   <>

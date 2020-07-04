@@ -4,9 +4,9 @@ import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { animated, useSpring } from 'react-spring';
 
-import { closeLoading, showLoading } from '../Loading';
 import Button from './Button';
 import DetailItem from './DetailItem';
+import { closeLoading, showLoading } from './Loading';
 
 let showDetail;
 

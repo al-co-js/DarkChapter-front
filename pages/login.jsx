@@ -3,10 +3,10 @@ import Cookies from 'js-cookie';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
+import Button from '../components/Button';
 import { closeLoading, Loading, showLoading } from '../components/Loading';
-import Button from '../components/New/Button';
-import { showModal } from '../components/New/Modal';
-import TextBox from '../components/New/TextBox';
+import { showModal } from '../components/Modal';
+import TextBox from '../components/TextBox';
 import Tile from '../components/Tile';
 
 const login = () => {

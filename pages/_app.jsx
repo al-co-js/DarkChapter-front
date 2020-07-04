@@ -4,8 +4,8 @@ import { PageTransition } from 'next-page-transitions';
 import Head from 'next/head';
 import React from 'react';
 
-import { Modal } from '../components/New/Modal';
-import Navigation from '../components/New/Navigation';
+import { Modal } from '../components/Modal';
+import Navigation from '../components/Navigation';
 
 const app = ({ Component, pageProps, router }) => (
   <>

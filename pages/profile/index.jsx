@@ -4,10 +4,10 @@ import Router, { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 
+import { Detail, showDetail } from '../../components/Detail';
 import { closeLoading, Loading, showLoading } from '../../components/Loading';
-import { Detail, showDetail } from '../../components/New/Detail';
-import { showModal } from '../../components/New/Modal';
-import Profile from '../../components/New/Profile';
+import { showModal } from '../../components/Modal';
+import Profile from '../../components/Profile';
 
 const profile = () => {
   const router = useRouter();
