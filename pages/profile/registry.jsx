@@ -4,7 +4,7 @@ import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import Button from '../../components/Button';
-import { closeLoading, showLoading } from '../../components/Loading';
+import { closeLoading, Loading, showLoading } from '../../components/Loading';
 import { showModal } from '../../components/Modal';
 
 const registry = () => {
@@ -12,11 +12,10 @@ const registry = () => {
   const [image, setImage] = useState('/imageSelect.svg');
   const [file, setFile] = useState(<></>);
   const [name, setName] = useState(<></>);
-  let token;
 
   useEffect(() => {
     const delegate = async () => {
-      token = Cookies.get('token');
+      const token = Cookies.get('token');
       if (!token) {
         showModal('로그인이 필요한 작업입니다', 'ok', 'info', () => {
           Router.push('/login');
@@ -75,13 +74,14 @@ const registry = () => {
 
       try {
         showLoading();
+        const token = Cookies.get('token');
         await axios.post('https://darkchapter-back.herokuapp.com/profile/registry', {
           token,
           target,
           image,
         });
         closeLoading();
-        showModal('성공적으로 프로필을 생성했습니다', 'ok', 'error', () => {
+        showModal('성공적으로 프로필을 생성했습니다', 'ok', 'success', () => {
           Router.push('/profile');
         });
       } catch (err) {
@@ -120,6 +120,7 @@ const registry = () => {
 
   return (
     <>
+      <Loading />
       <div
         className="profileContainer"
       >
