@@ -16,7 +16,7 @@ const Navigation = () => {
   }));
 
   const [open, setOpen] = useState(false);
-  const [token, setToken] = useState();
+  const [token, setToken] = useState('');
 
   const grab = () => {
     if (open) {

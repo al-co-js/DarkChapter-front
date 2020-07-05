@@ -14,8 +14,8 @@ const login = () => {
     Cookies.remove('token');
   }, []);
 
-  const [id, setId] = useState();
-  const [password, setPassword] = useState();
+  const [id, setId] = useState(<></>);
+  const [password, setPassword] = useState(<></>);
 
   const Login = async () => {
     if (!(id.value && password.value)) {

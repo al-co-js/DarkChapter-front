@@ -14,11 +14,11 @@ const join = () => {
     Cookies.remove('token');
   }, []);
 
-  const [name, setName] = useState();
-  const [schoolId, setSchoolId] = useState();
-  const [id, setId] = useState();
-  const [password, setPassword] = useState();
-  const [verify, setVerify] = useState();
+  const [name, setName] = useState(<></>);
+  const [schoolId, setSchoolId] = useState(<></>);
+  const [id, setId] = useState(<></>);
+  const [password, setPassword] = useState(<></>);
+  const [verify, setVerify] = useState(<></>);
 
   const Join = async () => {
     if (!(name.value && schoolId.value && id.value && password.value && verify.value)) {

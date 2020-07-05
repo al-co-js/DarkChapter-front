@@ -8,8 +8,8 @@ const TextBox = ({
     y: 23,
     color: '#777777',
   });
-  const [ref, setRef] = useState();
-  const [msg, setMsg] = useState();
+  const [ref, setRef] = useState(<></>);
+  const [msg, setMsg] = useState('');
 
   const focus = () => {
     setState({

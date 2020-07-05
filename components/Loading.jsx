@@ -5,8 +5,8 @@ let closeLoading;
 
 const Loading = () => {
   const [status, setStatus] = useState('none');
-  const [modal, setModal] = useState();
-  const [back, setBack] = useState();
+  const [modal, setModal] = useState(<></>);
+  const [back, setBack] = useState(<></>);
 
   showLoading = () => {
     setStatus('block');

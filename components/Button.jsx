@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const Button = ({
   className, id, children, onClick, color,
 }) => {
-  const [ref, setRef] = useState();
+  const [ref, setRef] = useState(<></>);
 
   return (
     <>

@@ -15,22 +15,24 @@ const Profile = ({
   return (
     <>
       <div
-        aria-hidden
+        role="button"
         className="profileContainer"
         onClick={openDetail}
         onKeyPress={openDetail}
+        tabIndex={0}
       >
         <img className="image" src={image} alt="profileImage" />
         <div className="target">{target}</div>
         <div className="uploader">{`작성자 : ${uploader}`}</div>
+      </div>
 
-        <style jsx>
-          {`
+      <style jsx>
+        {`
           .profileContainer {
             background-color: #ffffff;
             border-radius: 46px;
             width: 247px;
-            height: 336px;
+            height: 366px;
             text-align: center;
             border-width: 3px;
             border-style: solid;
@@ -59,8 +61,7 @@ const Profile = ({
             user-select: none;
           }
         `}
-        </style>
-      </div>
+      </style>
     </>
   );
 };
