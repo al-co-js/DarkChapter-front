@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import Link from 'next/link';
 import Router, { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { render } from 'react-dom';
@@ -72,7 +73,7 @@ const profile = () => {
       try {
         const verified = await axios.post('https://darkchapter-back.herokuapp.com/auth/verify', {
           token,
-          need: true,
+          need: false,
         });
         if (!verified) {
           showModal('로그인이 필요한 작업입니다', 'ok', 'info', () => {
@@ -118,9 +119,11 @@ const profile = () => {
       <Detail />
       <ul id="profileList">
         <li>
-          <a id="registryLink" href="/profiles/registry">
-            <img className="registry" src="/plus.svg" alt="registry" />
-          </a>
+          <Link href="/profile/registry">
+            <a id="registryLink">
+              <img className="registry" src="/plus.svg" alt="registry" />
+            </a>
+          </Link>
         </li>
       </ul>
 
