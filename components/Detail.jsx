@@ -203,7 +203,7 @@ const Detail = () => {
         {`
           .detailList {
             position: absolute;
-            left: 50%;
+            left: 48.5%;
             transform: translateX(-50%);
             top: 23%;
             width: 95%;
