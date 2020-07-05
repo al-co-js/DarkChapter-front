@@ -24,11 +24,13 @@ const login = () => {
     }
     try {
       showLoading();
-      const token = await axios.post('https://darkchapter-back.herokuapp.com/auth/login',
-        { id: id.value, password: password.value });
+      const token = await axios.post('https://darkchapter-back.herokuapp.com/auth/login', {
+        id: id.value,
+        password: password.value,
+      });
       if (!token) {
         closeLoading();
-        showModal('알 수 없는 오류가 발생했습니다', 'ok', 'error');
+        showModal('알 수 없는 에러가 발생했습니다', 'ok', 'error');
         return;
       }
 
