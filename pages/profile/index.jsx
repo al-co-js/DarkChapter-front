@@ -86,7 +86,7 @@ const profile = () => {
           if (last) {
             if (
               window.scrollY + document.documentElement.clientHeight
-          === document.documentElement.scrollHeight
+              === document.documentElement.scrollHeight
             ) {
               page += 1;
               try {
