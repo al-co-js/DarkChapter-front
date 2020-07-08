@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { animated, useSpring } from 'react-spring';
 
-import Button from './Button';
-import DetailItem from './DetailItem';
-import { closeLoading, showLoading } from './Loading';
+import Button from '../Button';
+import DetailItem from '../DetailItem';
+import { closeLoading, showLoading } from '../Loading';
+import { showRegistry } from './Registry';
 
 let showDetail;
 
@@ -15,7 +16,6 @@ const Detail = () => {
   const [detail, setDetail] = useState(<></>);
   const [state, setState] = useState('none');
   const [list, setList] = useState(<></>);
-  const [registry, setRegistry] = useState(() => {});
   const router = useRouter();
   const { id } = router.query;
 
@@ -62,14 +62,6 @@ const Detail = () => {
 
   showDetail = () => {
     const delegate = async () => {
-      const buf = () => {
-        close();
-        Router.push({
-          pathname: '/profile/detail',
-          query: { id },
-        });
-      };
-      setRegistry(() => buf);
       try {
         showLoading();
         const items = document.getElementsByClassName('detailItems');
@@ -90,8 +82,8 @@ const Detail = () => {
             className="registry"
             src="/plus.svg"
             alt="registry"
-            onClick={registry}
-            onKeyPress={registry}
+            onClick={showRegistry}
+            onKeyPress={showRegistry}
           />
         );
         const contb = document.createElement('li');
@@ -239,6 +231,7 @@ const Detail = () => {
           .registry {
             position: relative;
             margin-left: 100px;
+            cursor: pointer;
           }
 
           .close {
