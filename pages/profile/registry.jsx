@@ -78,7 +78,7 @@ const registry = () => {
       try {
         showLoading();
         new Compressor(imageFile, {
-          quality: 0.6,
+          quality: 0.8,
           minWidth: 195,
           minHeight: 195,
           maxWidth: 195,
