@@ -6,6 +6,7 @@ import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 
 import { Detail, showDetail } from '../../components/Detail';
+import { Registry } from '../../components/Detail/Registry';
 import { closeLoading, Loading, showLoading } from '../../components/Loading';
 import { showModal } from '../../components/Modal';
 import Profile from '../../components/Profile';
@@ -117,12 +118,15 @@ const profile = () => {
     <>
       <Loading />
       <Detail />
+      <Registry />
       <ul id="profileList">
         <li>
           <Link href="/profile/registry">
-            <a id="registryLink">
-              <img className="registry" src="/plus.svg" alt="registry" />
-            </a>
+            <img
+              className="registry"
+              src="/plus.svg"
+              alt="registry"
+            />
           </Link>
         </li>
       </ul>
@@ -145,6 +149,7 @@ const profile = () => {
             margin-left: 50px;
             margin-right: 50px;
             margin-top: 80px;
+            cursor: pointer;
           }
         `}
       </style>
