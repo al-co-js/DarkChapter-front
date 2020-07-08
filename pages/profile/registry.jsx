@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Compressor from 'compressorjs';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -10,6 +11,7 @@ import { showModal } from '../../components/Modal';
 const registry = () => {
   const [uploader, setUploader] = useState('');
   const [image, setImage] = useState('/imageSelect.svg');
+  const [imageFile, setImageFile] = useState('');
   const [file, setFile] = useState(<></>);
   const [name, setName] = useState(<></>);
 
@@ -53,6 +55,7 @@ const registry = () => {
     fileReader.readAsDataURL(files[0]);
     fileReader.onloadend = () => {
       setImage(fileReader.result);
+      setImageFile(files[0]);
     };
   };
 
@@ -74,15 +77,35 @@ const registry = () => {
 
       try {
         showLoading();
-        const token = Cookies.get('token');
-        await axios.post('https://darkchapter-back.herokuapp.com/profile/registry', {
-          token,
-          target,
-          image,
-        });
-        closeLoading();
-        showModal('성공적으로 프로필을 생성했습니다', 'ok', 'success', () => {
-          Router.push('/profile');
+        new Compressor(imageFile, {
+          quality: 0.6,
+          minWidth: 195,
+          minHeight: 195,
+          maxWidth: 195,
+          maxHeight: 195,
+          width: 195,
+          height: 195,
+          success(result) {
+            const reader = new FileReader();
+            reader.readAsDataURL(result);
+            reader.onloadend = async () => {
+              const base64data = reader.result;
+              const token = Cookies.get('token');
+              await axios.post('https://darkchapter-back.herokuapp.com/profile/registry', {
+                token,
+                target,
+                image: base64data,
+              });
+              closeLoading();
+              showModal('성공적으로 프로필을 생성했습니다', 'ok', 'success', () => {
+                Router.push('/profile');
+              });
+            };
+          },
+          error(err) {
+            closeLoading();
+            showModal(err, 'ok', 'error');
+          },
         });
       } catch (err) {
         closeLoading();
@@ -149,7 +172,7 @@ const registry = () => {
       </div>
 
       <Button id="registryButton" onClick={profileRegistry}>
-        만들기
+        Upload
       </Button>
 
       <style jsx>

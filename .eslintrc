@@ -15,11 +15,22 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "simple-import-sort"],
+  "plugins": [
+    "react",
+    "simple-import-sort"
+  ],
   "rules": {
-    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "_id"
+        ]
+      }
+    ],
     "jsx-a11y/anchor-is-valid": "off",
     "simple-import-sort/sort": "error",
-    "import/no-mutable-exports": "off"
+    "import/no-mutable-exports": "off",
+    "no-new": "off"
   }
 }
