@@ -151,12 +151,8 @@ const Registry = () => {
         showModal('프로필 이미지를 선택해주세요', 'ok', 'error');
         return;
       }
-      if (!content || content === '이름 입력') {
-        showModal('이름을 입력해주세요', 'ok', 'error');
-        return;
-      }
-      if (content.search(' ') !== -1) {
-        showModal('이름에는 공백이 포함될 수 없습니다', 'ok', 'error');
+      if (content === '내용을 수정해보세요') {
+        showModal('내용을 입력해주세요', 'ok', 'error');
         return;
       }
 
