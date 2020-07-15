@@ -69,7 +69,7 @@ const Modal = () => {
       if (_type === 'ok') {
         setType(
           <>
-            <Button className="ok" onClick={() => ok()}>
+            <Button className="ok" onClick={ok}>
               확인
             </Button>
           </>,
@@ -77,10 +77,10 @@ const Modal = () => {
       } else {
         setType(
           <>
-            <Button className="ok" onClick={() => ok()}>
+            <Button className="ok" onClick={ok}>
               확인
             </Button>
-            <Button className="cancel" color="orange" onClick={() => cancel()}>
+            <Button className="cancel" color="orange" onClick={cancel}>
               취소
             </Button>
           </>,
