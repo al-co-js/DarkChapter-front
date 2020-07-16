@@ -306,7 +306,7 @@ const Registry = () => {
           .image {
             position: absolute;
             left: 20px;
-            top: 300px;
+            top: 350px;
             max-width: 400px;
             max-height: 400px;
             cursor: pointer;
@@ -315,14 +315,14 @@ const Registry = () => {
           .content {
             position: absolute;
             left: 450px;
-            top: 360px;
+            top: 410px;
             margin-right: 20px;
           }
 
           .uploader {
             position: absolute;
             left: 450px;
-            top: 300px;
+            top: 350px;
             font-size: 30px;
           }
 
