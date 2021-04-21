@@ -1,30 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
+# DarkChapter FrontEnd
 
-## Getting Started
+> **흑역사를 추억하다** Dark Chapter
 
-First, run the development server:
+[Dark Chapter 접속하기](https://darkchapter-frontend.herokuapp.com)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Dark Chapter란?
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Dark Chapter는 추억을 저장하고, 흑역사를 기억하는 사이트입니다.
+- 누구든지 프로필을 볼 수 있고, 내용을 변경할 수 있습니다.
+- 단, 아래의 규칙을 모두 읽고, 선을 넘지 않게 조심해주세요.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## 규칙
 
-## Learn More
+1. 사진을 올리면 내 안전이 보장되는가 생각하고 올린다.
+2. 사진을 올리면 우정을 지킬 수 있는가 생각하고 올린다.
+3. 기숙사 사진은 배경을 알아볼 수 없도록 편집하고 올린다.
+4. 사진을 지워달라는 요청이 들어오면 바로 지운다.
+5. 이 사이트의 주 목적은 추억을 저장하는 것이다.
+6. 위의 사항들이 지켜지지 않을 경우, 개발자에 의해 경고없이 삭제처리 될 수 있다.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/zeit/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on ZEIT Now
-
-The easiest way to deploy your Next.js app is to use the [ZEIT Now Platform](https://zeit.co/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+> ***친구들***과 ***프로필***을 생성하여 ***흑역사***를 추억 할 준비를 해주세요.  
+> ***프로필 페이지***에서 ***당신의 프로필***을 확인해보세요.  
+> ***프로필***을 클릭해 ***흑역사***를 채워나가 보세요.
