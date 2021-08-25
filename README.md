@@ -2,7 +2,7 @@
 
 > **흑역사를 추억하다** Dark Chapter
 
-[Dark Chapter 접속하기](https://darkchapter-frontend.herokuapp.com)
+[Dark Chapter 접속하기](https://darkchapter-front.herokuapp.com)
 
 ## Dark Chapter란?
 
